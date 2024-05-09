@@ -65,3 +65,30 @@
 * 目標期限が過ぎた場合、UIを通常時から変更させる
 * 位置情報を取得機能を実装しメッセージのバリエーションを増やす
 
+## ■使用予定の技術スタック
+### 開発環境
+- Docker
+- Docker Compose
+
+### サーバサイド
+- Ruby on Rails 7系
+  - Ruby 3.2.2
+  - Rails 7.0.4.3
+
+### フロントエンド
+- React
+- CSSフレームワーク: Bootstrap 5系
+
+### WebAPI
+- LINE Messaging API
+- Geolocation API (検討中)
+
+### インフラ
+- Webアプリケーションサーバ: Amazon EC2 または AWS Elastic Beanstalk
+- ファイルサーバ: AWS S3
+- セッションサーバ: Amazon ElastiCache for Redis
+- データベースサーバ: Amazon RDS for PostgreSQL
+
+### その他
+- VCS: GitHub
+- CI/CD: GitHub Actions
