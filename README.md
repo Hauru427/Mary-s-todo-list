@@ -74,7 +74,8 @@
   - Rails 7.0.4.3
 
 ### フロントエンド
-- React
+- 初期リリースではRailsを使用
+- React（Railsで全て作成し本リリース後に徐々に移行）
 - CSSフレームワーク: Bootstrap 5系
 
 ### WebAPI
