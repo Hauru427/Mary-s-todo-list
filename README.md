@@ -91,3 +91,6 @@
 ### その他
 - VCS: GitHub
 - CI/CD: GitHub Actions
+
+## ■画面遷移図
+[Figma](https://www.figma.com/design/GyVsRGDJAEHDvSPuTnjwvn/Mary-s-todo-list?node-id=0%3A1&t=rRKr0DnFP1VOrjKy-1)
