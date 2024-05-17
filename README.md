@@ -94,3 +94,6 @@
 
 ## ■画面遷移図
 [Figma](https://www.figma.com/design/GyVsRGDJAEHDvSPuTnjwvn/Mary-s-todo-list?node-id=0%3A1&t=rRKr0DnFP1VOrjKy-1)
+
+## ■ER図
+[![Image from Gyazo](https://i.gyazo.com/36a089531dee7b7523965d409b2ca876.png)](https://gyazo.com/36a089531dee7b7523965d409b2ca876)
