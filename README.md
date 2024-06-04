@@ -88,7 +88,7 @@
 - Webアプリケーションサーバ: Amazon EC2 または AWS Elastic Beanstalk
 - ファイルサーバ: AWS S3
 - セッションサーバ: Amazon ElastiCache for Redis
-- データベースサーバ: Amazon RDS for PostgreSQL
+- データベースサーバ : Amazon RDS for PostgreSQL
 
 ### その他
 - VCS: GitHub
