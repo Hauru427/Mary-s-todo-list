@@ -16,6 +16,6 @@ test:
 
 production:
   <<: *default
-  database: Merystodo_production
-  username: <%= ENV['DATABASE_USERNAME'] %>
-  password: <%= ENV['DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
