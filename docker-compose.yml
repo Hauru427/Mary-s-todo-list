@@ -1,6 +1,7 @@
 services:
   db:
     image: postgres:latest
+    platform: linux/amd64
     volumes:
       - postgres_data:/var/lib/postgresql/data
     environment:
@@ -10,13 +11,14 @@ services:
 
   web:
     build: .
-    command: bundle exec rails s -b '0.0.0.0' -p 3000
+    command: bash -c "rm -f /myapp/tmp/pids/server.pid && bundle exec rails s -b '0.0.0.0' -p 3000"
     volumes:
       - .:/myapp
     ports:
       - "3000:3000"
     depends_on:
       - db
+    platform: linux/amd64
 
 volumes:
   postgres_data:
