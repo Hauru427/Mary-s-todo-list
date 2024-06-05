@@ -33,6 +33,8 @@
 現状作ろうと思っている機能、案段階の機能をしっかりと固まっていなくても構わないのでMVPリリース時に作っていたいもの、本リリースまでに作っていたいものをそれぞれ分けて教えてください。
 ### 【MVPリリース】
 * ユーザー登録機能
+* パスワードリセット機能
+* ゲストログイン機能
 * ユーザー削除(退会)機能
 * ユーザー情報機能
 * ログイン機能
@@ -86,7 +88,7 @@
 - Webアプリケーションサーバ: Amazon EC2 または AWS Elastic Beanstalk
 - ファイルサーバ: AWS S3
 - セッションサーバ: Amazon ElastiCache for Redis
-- データベースサーバ: Amazon RDS for PostgreSQL
+- データベースサーバ : Amazon RDS for PostgreSQL
 
 ### その他
 - VCS: GitHub
