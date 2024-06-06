@@ -11,15 +11,36 @@
   </head>
 
   <body>
-    <header class="nav navbar-fixed-top navbar-inverse">
-      <div class="container">
-        <%= link_to "Home", '#', id: "logo" %>
-        <nav>
-          <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to "検索", '#' %></li>
-            <li><%= link_to "ユーザー", '#' %></li>
+    <header class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <%= link_to "Home", '#', id: "logo", class: "navbar-brand" %>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <%= link_to "期限間近", '#', class: "nav-link" %>
+            </li>
           </ul>
-        </nav>
+          <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="検索" aria-label="Search">
+          </form>
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <%= link_to '#', class: 'nav-link dropdown-toggle', id: 'navbarDropdownMenyLink', role: 'button', data: { bs_toggle: 'dropdown' }, aria: { expanded: 'false' } do %>
+                ユーザー名
+              <% end %>
+              <ul class="dropdown-menu doropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                <li><%= link_to "ユーザー編集", '#', class: "dropdown-item" %></li>
+                <li><%= link_to "設定", '#', class: "dropdown-item" %></li>
+                <li><%= link_to "利用規約", '#', class: "dropdown-item" %></li>
+                <li><%= link_to "プライバシーポリシー", '#', class: "dropdown-item" %></li>
+                <li><%= link_to "ログアウト", '#', class: "dropdown-item" %></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
       </div>
     </header>
     <div class="container">

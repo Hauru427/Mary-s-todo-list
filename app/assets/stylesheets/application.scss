@@ -14,3 +14,8 @@
  *= require_self
  */
  @import "bootstrap";
+ /* ドロップダウンメニューの位置を調整 */
+ .nav-item.dropdown .dropdown-menu {
+  right: 0;
+  left: auto;
+ }
