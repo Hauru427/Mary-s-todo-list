@@ -18,7 +18,17 @@ services:
       - "3000:3000"
     depends_on:
       - db
+      - selenium
     platform: linux/amd64
+    environment:
+      CHROME_DRIVER_URL: http://selenium:4444/wd/hub
+
+  selenium:
+    image: selenium/standalone-chromium:latest
+    ports:
+      - "4444:4444"
+    volumes:
+      - /dev/shm:/dev/shm
 
 volumes:
   postgres_data:

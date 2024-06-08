@@ -31,6 +31,19 @@ rescue ActiveRecord::PendingMigrationError => e
   puts e.to_s.strip
   exit 1
 end
+
+# 既存のCapybara設定の前に以下を追加
+Capybara.register_driver :remote_chrome do |app|
+  options = Selenium::WebDriver::Chrome::Options.new
+  options.add_argument('headless') if ENV['HEADLESS']
+
+  Capybara::Selenium::Driver.new(app,
+    browser: :remote,
+    url: ENV.fetch('CHROME_DRIVER_URL'),
+    options: options
+  )
+end
+
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.include FactoryBot::Syntax::Methods
