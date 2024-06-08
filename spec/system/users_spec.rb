@@ -8,9 +8,9 @@ RSpec.describe "ユーザー登録", type: :system do
         fill_in "User name",	with: "テスト太郎"
         fill_in "Email",	with: "example@example.com"
         fill_in "Password",	with: "12345678"
-        fill_in "password_confirmation",	with: "12345678"
+        fill_in "Password confirmation",	with: "12345678"
         click_button '登録'
-        Capybara.asser_current_path("/", ignore_query: true)
+        Capybara.assert_current_path("/", ignore_query: true)
     }.to change { User.count }.by(1)
     end
   end
