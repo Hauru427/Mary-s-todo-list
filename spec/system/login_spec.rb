@@ -26,13 +26,13 @@ RSpec.describe 'ログイン・ログアウト', type: :system do
         end
       end
     end
-    
+
     describe "ログアウト" do
       before do
         login_as_general
       end
       it 'ログアウトできること' do
-        find('#header-profile').click
+        find('#navbarDropdownMenyLink').click
         click_on('ログアウト')
         expect(current_path).to eq root_path
       end

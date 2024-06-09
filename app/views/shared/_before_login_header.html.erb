@@ -19,11 +19,7 @@
                 ユーザー名
               <% end %>
               <ul class="dropdown-menu doropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                <li><%= link_to "ユーザー編集", '#', class: "dropdown-item" %></li>
-                <li><%= link_to "設定", '#', class: "dropdown-item" %></li>
-                <li><%= link_to "利用規約", '#', class: "dropdown-item" %></li>
-                <li><%= link_to "プライバシーポリシー", '#', class: "dropdown-item" %></li>
-                <li><%= link_to "ログアウト", logout_path, data: { turbo_method: :delete} , class: "dropdown-item" %></li>
+                <li><%= link_to "ログアウト", '#', class: "dropdown-item" %></li>
               </ul>
             </li>
           </ul>
