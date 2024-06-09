@@ -1,28 +1,15 @@
-    <header class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container-fluid">
-        <%= link_to "Home", '#', id: "logo", class: "navbar-brand" %>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <%= link_to "期限間近", '#', class: "nav-link" %>
-            </li>
-          </ul>
-          <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="検索" aria-label="Search">
-          </form>
-          <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-              <%= link_to '#', class: 'nav-link dropdown-toggle', id: 'navbarDropdownMenyLink', role: 'button', data: { bs_toggle: 'dropdown' }, aria: { expanded: 'false' } do %>
-                ユーザー名
-              <% end %>
-              <ul class="dropdown-menu doropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                <li><%= link_to "ログアウト", '#', class: "dropdown-item" %></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </header>
+<header class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <%= link_to "Home", root_path, id: "logo", class: "navbar-brand" %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <%= link_to "ログイン", login_path, class: "nav-link" %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
