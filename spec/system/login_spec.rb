@@ -11,8 +11,8 @@ RSpec.describe 'ログイン・ログアウト', type: :system do
           fill_in "Email",	with: user.email
           fill_in "Password",	with: "12345678"
           click_button 'ログイン'
-          Capybara.assert_current_path("/", ignore_query: true)
-          expect(current_path).to eq root_path
+          sleep 1
+          expect(page.current_path).to eq('/list')
         end
       end
 
@@ -29,11 +29,12 @@ RSpec.describe 'ログイン・ログアウト', type: :system do
 
     describe "ログアウト" do
       before do
-        login_as_general
+        login_as(user)
       end
       it 'ログアウトできること' do
         find('#navbarDropdownMenyLink').click
         click_on('ログアウト')
+        sleep 1
         expect(current_path).to eq root_path
       end
     end

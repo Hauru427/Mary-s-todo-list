@@ -76,6 +76,11 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  # Sorceryのヘルパーを含める
+  config.include Sorcery::TestHelpers::Rails::Controller, type: :controller
+  config.include Sorcery::TestHelpers::Rails::Integration, type: :feature
+
   if ENV['CODEBUILD_BUILD_ID']
     config.before(:each, type: :system) do
       driven_by :selenium, using: :headless_chrome, screen_size: [1920, 1080]
