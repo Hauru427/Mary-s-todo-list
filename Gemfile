@@ -52,6 +52,9 @@ gem "sassc-rails"
 gem 'bootstrap', '~> 5.3.0'
 gem 'jquery-rails'
 
+# fontawesomeを使用するために追加
+gem 'font-awesome-sass'
+
 # ユーザー認証、ログイン、ログアウト、パスワードリセットに使用
 gem 'sorcery', '0.17.0'
 

@@ -55,7 +55,7 @@ RSpec.describe "Lists", type: :system do
     describe "リストの編集" do
       context "ログインしていない場合" do
         it "ログインページにリダイレクトされること" do
-          visit '/list/edit'
+          visit "/list/#{list.id}/edit"
           Capybara.assert_current_path("/login", ignore_query: true)
           expect(current_path).to eq('/login'), 'リスト編集画面にアクセスしたときにログインしていません'
         end
@@ -64,9 +64,11 @@ RSpec.describe "Lists", type: :system do
       context "ログインしている場合" do
         it '掲示板の編集ができること' do
           login_as(user)
-          click_on('Test List')
+          list
+          find('.list_header_action .fas.fa-pen').click
           fill_in 'list_title', with: 'Edit Test'
           click_button '編集する'
+          sleep 1
           expect(current_path).to eq('/list')
           expect(page).to have_content('Edit Test'), '編集したリストのタイトルが表示されていません'
         end
