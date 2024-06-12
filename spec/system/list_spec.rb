@@ -74,5 +74,17 @@ RSpec.describe "Lists", type: :system do
         end
       end
     end
+    describe "リストの削除" do
+      context "正常に削除できること" do
+        it '' do
+          login_as(user)
+            list
+            find('.list_header_action .fas.fa-trash').click
+            sleep 1
+            expect(current_path).to eq('/list')
+            expect(page).to change { list.count }.by(0)
+        end
+      end
+    end
   end
 end
