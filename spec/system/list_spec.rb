@@ -81,8 +81,10 @@ RSpec.describe "Lists", type: :system do
             list
             find('.list_header_action .fas.fa-trash').click
             sleep 1
+            expect(page.driver.browser.switch_to.alert.text).to eq "削除しますか？"
+            page.driver.browser.switch_to.alert.accept
             expect(current_path).to eq('/list')
-            expect(page).to change { list.count }.by(0)
+            expect(List.count).to eq 0
         end
       end
     end

@@ -10,5 +10,5 @@ Rails.application.routes.draw do
   delete 'logout', to: 'user_sessions#destroy'
 
   # リスト関連
-  resources :list, only: %i[index new create edit update]
+  resources :list, only: %i[index new create edit update destroy]
 end
