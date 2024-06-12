@@ -1,0 +1,19 @@
+<div class="topPage">
+  <div class="listWrapper">
+    <% @lists.each do |list| %>
+      <div class="list">
+        <div class="list_header">
+          <h2 class="list_header_title"><%= list.title %></h2>
+          <div class="list_header_action">
+            <%= link_to list_path(list), data: { turbo_method: :delete, turbo_confirm: "削除しますか？"}, class: 'btn btn-outline-secondary' do %>
+              <i class="fas fa-trash"></i>
+            <% end %>
+            <%= link_to edit_list_path(list), class: 'btn btn-outline-secondary' do %>
+              <i class="fas fa-pen"></i>
+            <% end %> 
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
