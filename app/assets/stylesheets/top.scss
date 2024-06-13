@@ -39,7 +39,11 @@
         overflow-y: scroll;
         max-height: 76vh;
 
-        /* ==========ここから追加する========== */
+        .cardDetail_link {
+          text-decoration: none;
+          color: #323232;
+        }
+
         .card {
           margin-bottom: 10px;
           padding: 10px;
@@ -57,7 +61,6 @@
             }
           }
         }
-        /* ==========ここまで追加する========== */
 
         .addCard {
           color: #8c8c8c;
