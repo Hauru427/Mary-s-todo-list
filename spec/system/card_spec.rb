@@ -79,12 +79,14 @@ RSpec.describe "Cards", type: :system do
           login_as(user)
           list
           card
-          find('.list_header_action .fas.fa-pen').click
-          fill_in 'list_title', with: 'Edit Test'
-          click_button '編集する'
+          find('.fas.fa-bars').click
+          click_link '編集する'
+          fill_in 'card_title', with: 'Edit Test of card'
+          fill_in 'card_memo', with: 'Edit Test of memo'
+          click_button '更新する'
           sleep 1
           expect(current_path).to eq('/list')
-          expect(page).to have_content('Edit Test'), '編集したカードのタイトルが表示されていません'
+          expect(page).to have_content('Edit Test of card'), '編集したカードのタイトルが表示されていません'
         end
       end
     end

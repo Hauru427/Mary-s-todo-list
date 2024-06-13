@@ -11,6 +11,6 @@ Rails.application.routes.draw do
 
   # リスト関連
   resources :list, only: %i[index new create edit update destroy] do
-    resources :card, only: %i[new create show]
+    resources :card, only: %i[new create show edit update]
   end
 end
