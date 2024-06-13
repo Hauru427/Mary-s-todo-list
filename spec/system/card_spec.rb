@@ -101,8 +101,9 @@ RSpec.describe "Cards", type: :system do
           sleep 1
           expect(page.driver.browser.switch_to.alert.text).to eq "削除しますか？"
           page.driver.browser.switch_to.alert.accept
+          sleep 1
           expect(current_path).to eq('/list')
-          expect(List.count).to eq 0
+          expect(Card.count).to eq 0
       end
     end
   end

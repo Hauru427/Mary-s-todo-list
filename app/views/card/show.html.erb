@@ -16,6 +16,7 @@
 
       <div class="card_contents_btnArea">
         <%= link_to '編集する', edit_list_card_path(@card.list, @card), class: "btn btn-primary" %>
+        <%= link_to '削除する', list_card_path(@card.list, @card), data: { turbo_method: :delete, turbo_confirm: "削除しますか？"}, class: 'btn btn-danger' %>
       </div>
     </div>
   </div>
