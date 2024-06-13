@@ -91,19 +91,19 @@ RSpec.describe "Cards", type: :system do
       end
     end
 
-    # describe "カードの削除" do
-    #   context "正常に削除できること" do
-    #     it '' do
-    #       login_as(user)
-    #         list
-    #         find('.list_header_action .fas.fa-trash').click
-    #         sleep 1
-    #         expect(page.driver.browser.switch_to.alert.text).to eq "削除しますか？"
-    #         page.driver.browser.switch_to.alert.accept
-    #         expect(current_path).to eq('/list')
-    #         expect(List.count).to eq 0
-    #     end
-    #   end
-    # end
+    describe "カードの削除" do
+      it '正常に削除が実行されること' do
+        login_as(user)
+          list
+          card
+          find('.fas.fa-bars').click
+          click_link '削除する'
+          sleep 1
+          expect(page.driver.browser.switch_to.alert.text).to eq "削除しますか？"
+          page.driver.browser.switch_to.alert.accept
+          expect(current_path).to eq('/list')
+          expect(List.count).to eq 0
+      end
+    end
   end
 end
