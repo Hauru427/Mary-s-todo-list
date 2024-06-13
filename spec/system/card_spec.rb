@@ -37,6 +37,34 @@ RSpec.describe "Cards", type: :system do
       end
     end
 
+    describe 'カードの詳細' do
+      context 'ログインしていない場合' do
+        it 'ログインページにリダイレクトされること' do
+          visit card_path(card)
+          expect(current_path).to eq login_path
+        end
+      end
+
+      context 'ログインしている場合' do
+        before do
+          login_as(user)
+          list
+          card
+        end
+        it 'カードの詳細が表示されること' do
+          click_on('カード一覧')
+          expect(current_path).to eq("/list/#{list.id}/"), 'カードのタイトルリンクからカード詳細画面へ遷移できません'
+          expect(page).to have_content card.title
+          expect(page).to have_content card.user.decorate.full_name
+          expect(page).to have_content card.body
+        end
+        it '正しいタイトルが表示されていること' do
+          click_on('カード一覧')
+          expect(page).to have_content('Test title of card'),'作成したカードが表示されていません'
+        end
+      end
+    end
+
     # describe "カードの一覧" do
     #   context "ログインしていない場合" do
     #     it "ログインページにリダイレクトされること" do
