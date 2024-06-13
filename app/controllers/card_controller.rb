@@ -5,8 +5,8 @@ class CardController < ApplicationController
   end
 
   def create
-    @card = card.new(card_params)
-    if card.save
+    @card = Card.new(card_params)
+    if @card.save
       redirect_to list_index_path
     else
       render :new

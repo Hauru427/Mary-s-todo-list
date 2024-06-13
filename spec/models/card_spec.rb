@@ -12,6 +12,7 @@ RSpec.describe Card, type: :model do
   it 'タイトルが必須項目であること' do
     card = build(:card, title: nil)
     card.valid?
+    puts card.errors.full_messages
     expect(card.errors[:title]).to include("can't be blank")
   end
 
@@ -22,11 +23,11 @@ RSpec.describe Card, type: :model do
     expect(card.errors[:title]).to include("is too long (maximum is 255 characters)")
   end
 
-  it 'カードは255文字以下であること' do
+  it 'メモは1000文字以下であること' do
     long_memo = 'a' * 1001
-    card = build(:card, title: long_memo)
+    card = build(:card, memo: long_memo)
     card.valid?
-    expect(card.errors[:title]).to include("is too long (maximum is 999 characters)")
+    expect(card.errors[:memo]).to include("is too long (maximum is 1000 characters)")
   end
 
   it 'カードはリストに属すること' do

@@ -1,6 +1,6 @@
 <div class="listnewPage">
   <div class="container">
-    <%= form_with model: @list, url: { action: :create }, class: "new_list", local: true do |f| %>
+    <%= form_with model: @list, url: list_index_path, class: "new_list", local: true do |f| %>
       <% if @list.errors.any? %>
         <p class="text-danger">タイトルは1～255文字以内で入力してください</p>
       <% end %>
