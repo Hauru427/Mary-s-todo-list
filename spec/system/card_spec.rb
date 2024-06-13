@@ -66,46 +66,29 @@ RSpec.describe "Cards", type: :system do
       end
     end
 
-    # describe "カードの一覧" do
-    #   context "ログインしていない場合" do
-    #     it "ログインページにリダイレクトされること" do
-    #       visit '/list'
-    #       Capybara.assert_current_path("/login", ignore_query: true)
-    #       expect(current_path).to eq('/login'), 'カード一覧画面にアクセスしたときにログインしていません'
-    #     end
-    #   end
+    describe "カードの編集" do
+      context "ログインしていない場合" do
+        it "ログインページにリダイレクトされること" do
+          visit "/list/#{list.id}/card/#{card.id}/edit"
+          expect(current_path).to eq('/login'), 'カード編集画面にアクセスしたときにログインしていません'
+        end
+      end
 
-    #   context "ログインしている場合" do
-    #     it 'カード一覧に遷移できること' do
-    #       login_as(user)
-    #       Capybara.assert_current_path("/list", ignore_query: true)
-    #       expect(current_path).to eq('/list')
-    #     end
-    #   end
-    # end
+      context "ログインしている場合" do
+        it '掲示板の編集ができること' do
+          login_as(user)
+          list
+          card
+          find('.list_header_action .fas.fa-pen').click
+          fill_in 'list_title', with: 'Edit Test'
+          click_button '編集する'
+          sleep 1
+          expect(current_path).to eq('/list')
+          expect(page).to have_content('Edit Test'), '編集したカードのタイトルが表示されていません'
+        end
+      end
+    end
 
-    # describe "カードの編集" do
-    #   context "ログインしていない場合" do
-    #     it "ログインページにリダイレクトされること" do
-    #       visit "/list/#{list.id}/edit"
-    #       Capybara.assert_current_path("/login", ignore_query: true)
-    #       expect(current_path).to eq('/login'), 'カード編集画面にアクセスしたときにログインしていません'
-    #     end
-    #   end
-
-    #   context "ログインしている場合" do
-    #     it '掲示板の編集ができること' do
-    #       login_as(user)
-    #       list
-    #       find('.list_header_action .fas.fa-pen').click
-    #       fill_in 'list_title', with: 'Edit Test'
-    #       click_button '編集する'
-    #       sleep 1
-    #       expect(current_path).to eq('/list')
-    #       expect(page).to have_content('Edit Test'), '編集したカードのタイトルが表示されていません'
-    #     end
-    #   end
-    # end
     # describe "カードの削除" do
     #   context "正常に削除できること" do
     #     it '' do
