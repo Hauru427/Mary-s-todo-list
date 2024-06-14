@@ -94,16 +94,37 @@ RSpec.describe "Cards", type: :system do
     describe "カードの削除" do
       it '正常に削除が実行されること' do
         login_as(user)
-          list
-          card
-          find('.fas.fa-bars').click
-          click_link '削除する'
-          sleep 1
-          expect(page.driver.browser.switch_to.alert.text).to eq "削除しますか？"
-          page.driver.browser.switch_to.alert.accept
-          sleep 1
-          expect(current_path).to eq('/list')
-          expect(Card.count).to eq 0
+        list
+        card
+        find('.fas.fa-bars').click
+        click_link '削除する'
+        sleep 1
+        expect(page.driver.browser.switch_to.alert.text).to eq "削除しますか？"
+        page.driver.browser.switch_to.alert.accept
+        sleep 1
+        expect(current_path).to eq('/list')
+        expect(Card.count).to eq 0
+      end
+    end
+
+    describe "カード移動機能" do
+      let(:list2) { create(:list, title: "リスト2", user: user)}
+      it '正常に移動できること' do
+        login_as(user)
+        list
+        list2
+        card
+        find('.fas.fa-bars').click
+        click_link '編集する'
+        select 'リスト2', from: 'リスト名'
+        click_button '更新する'
+        within('.list_header_title', text: 'Test List') do
+          expect(page).not_to have_content('Test Card')
+        end
+
+        within('.list', text: 'リスト2') do
+          expect(page).to have_content('Test Card')
+        end
       end
     end
   end

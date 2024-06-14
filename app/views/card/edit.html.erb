@@ -12,6 +12,11 @@
         <%= f.label :memo %>
         <%= f.text_area :memo, class: "form-control", placeholder: "詳細" %>
       </div>
+
+      <div class="cardeditForm_memo">
+        <%= f.label :list_id, "リスト名" %>
+        <%= f.collection_select :list_id, @lists, :id, :title, {}, { class: 'form-select' } %>
+      </div>
       <div class="text-center"><%= f.submit "更新する", class: "btn btn-success" %></div>
     <% end %>
   </div>

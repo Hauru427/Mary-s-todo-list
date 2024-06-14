@@ -17,7 +17,9 @@ before_action :set_card, only: %i[show edit update destroy]
 
   def show; end
 
-  def edit; end
+  def edit
+    @lists = List.where(user: current_user)
+  end
 
   def update
     if @card.update(card_params)
