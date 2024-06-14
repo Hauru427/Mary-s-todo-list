@@ -16,6 +16,10 @@
         <%= f.label :memo, class: "form-label" %>
         <%= f.text_area :memo, autofocus: true, class: "form-control", placeholder: "詳細" %>
       </div>
+      <div class="mb-3">
+        <%= f.label :due_date, class: "form-label" %>
+        <%= f.datetime_field :due_date, autofocus: true, class: "form-control" %>
+      </div>
       <div class="text-center">
         <%= f.submit "作成", class: "btn btn-primary" %>
       </div>
