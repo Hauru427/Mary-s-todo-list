@@ -30,6 +30,13 @@ RSpec.describe Card, type: :model do
     expect(card.errors[:memo]).to include("is too long (maximum is 1000 characters)")
   end
 
+  it "過去の日付のタスクは生成できないこと" do
+    card = build(:card, list: list, due_date: DateTime.now - 1.day)
+    expect(card).to_not be_valid
+    expect(card.errors[:due_date]).to include("can't be in the past")
+  end
+
+
   it 'カードはリストに属すること' do
     association = described_class.reflect_on_association(:list)
     expect(association.macro).to eq :belongs_to

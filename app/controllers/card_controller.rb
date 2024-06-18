@@ -36,7 +36,7 @@ before_action :set_card, only: %i[show edit update destroy]
 
   private
   def card_params
-    params.require(:card).permit(:title, :memo, :list_id)
+    params.require(:card).permit(:title, :memo, :list_id, :due_date)
   end
 
   def set_card

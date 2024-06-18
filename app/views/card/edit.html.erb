@@ -12,8 +12,11 @@
         <%= f.label :memo %>
         <%= f.text_area :memo, class: "form-control", placeholder: "詳細" %>
       </div>
-
-      <div class="cardeditForm_memo">
+      <div class="cardeditForm_duedate">
+        <%= f.label :due_date, class: "form-label" %>
+        <%= f.datetime_field :due_date, autofocus: true, class: "form-control" %>
+      </div>
+      <div class="cardeditForm_list">
         <%= f.label :list_id, "リスト名" %>
         <%= f.collection_select :list_id, @lists, :id, :title, {}, { class: 'form-select' } %>
       </div>
