@@ -1,5 +1,6 @@
 class RemindersController < ApplicationController
   require 'line/bot'
+  protect_from_forgery except: :callback
 
   def send_remainders
     Card.where('due_date <= ?', Time.now + 1.hour).find_each do |card|
