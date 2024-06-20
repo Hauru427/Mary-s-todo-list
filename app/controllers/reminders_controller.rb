@@ -2,18 +2,18 @@ class RemindersController < ApplicationController
   require 'line/bot'
 
   def send_remainders
-    Task.where('due_date <= ?', Time.now + 1.hour).find_each do |task|
-      send_line_reminder(task)
+    Card.where('due_date <= ?', Time.now + 1.hour).find_each do |card|
+      send_line_reminder(card)
     end
   end
 
-  def send_line_reminder(task)
+  def send_line_reminder(card)
     message = {
       type: 'text',
       text: "#{card.title}の期限が近づいています。"
     }
 
-    response = LINE_CLIENT.push_message(task.user.line_user_id, message)
+    response = client.push_message(card.user.line_user_id, message)
     Rails.logger.info("LINE reminder sent: #{response}")
   end
 
