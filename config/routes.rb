@@ -15,5 +15,5 @@ Rails.application.routes.draw do
   end
 
   # linebot
-  post '/callback', to: 'line_bot#callback'
+  post '/callback', to: 'reminders#callback'
 end
