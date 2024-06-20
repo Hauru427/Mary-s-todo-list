@@ -13,4 +13,7 @@ Rails.application.routes.draw do
   resources :list, only: %i[index new create edit update destroy] do
     resources :card, only: %i[new create show edit update destroy]
   end
+
+  # linebot
+  post '/callback', to: 'line_bot#callback'
 end
