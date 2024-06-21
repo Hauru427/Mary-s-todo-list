@@ -10,6 +10,9 @@ class RemindersController < ApplicationController
   end
 
   def send_line_reminder(card)
+    user = card.list.user
+
+    return unless user.line_id.present?
     message = {
       type: 'text',
       text: "#{card.title}の期限が近づいています。"
