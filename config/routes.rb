@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'oauths/oauth'
-  get 'oauths/callback'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
@@ -18,4 +16,9 @@ Rails.application.routes.draw do
 
   # linebot
   post '/callback', to: 'reminders#callback'
+
+  # Lineログイン・認証
+  get 'oauths/oauth'
+  get 'oauths/callback'
+  post "oauth/callback" => "oauths#callback"
 end
