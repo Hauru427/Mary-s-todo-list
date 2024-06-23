@@ -219,7 +219,7 @@ Rails.application.config.sorcery.configure do |config|
   # config.salesforce.scope = "full"
   # config.salesforce.user_info_mapping = {:email => "email"}
 
-  config.line.key = ENV['LINE_CHANNEL_TOKEN']
+  config.line.key = ENV['LINE_CHANNEL_ID']
   config.line.secret = ENV['LINE_CHANNEL_SECRET']
   # 開発環境
   config.line.callback_url = 'http://localhost:3000/oauth/callback?provider=line'
