@@ -222,7 +222,7 @@ Rails.application.config.sorcery.configure do |config|
   config.line.key = ENV['LINE_LOGIN_CHANNEL_ID']
   config.line.secret = ENV['LINE_LOGIN_CHANNEL_SECRET']
   # 開発環境
-  config.line.callback_url = 'http://localhost:3000/oauth/callback?provider=line'
+  config.line.callback_url = 'https://6185-240b-252-8880-1000-9964-c809-5778-3c24.ngrok-free.app/oauth/callback?provider=line'
   # 本番環境
   # config.line.callback_url = ''
   config.line.scope = "profile"
