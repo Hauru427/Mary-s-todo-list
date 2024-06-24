@@ -39,7 +39,7 @@ class OauthsController < ApplicationController
       )
       current_user
     else
-      user.create!(
+      User.create!(
         user_name: auth.info.name,
         line_id: auth.uid
       )
