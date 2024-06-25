@@ -69,5 +69,5 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   # lineログインの開発環境でのテストのため
-  config.hosts << '6185-240b-252-8880-1000-9964-c809-5778-3c24.ngrok-free.app'
+  config.hosts << 'b6f3-240b-252-8880-1000-4066-8f46-db8a-c2db.ngrok-free.app'
 end

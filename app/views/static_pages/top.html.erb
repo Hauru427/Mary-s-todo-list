@@ -5,7 +5,7 @@
       <%= link_to "Login", login_path, class: "btn btn-lg btn-primary m-2" %>
       <%= link_to "Guest Login", '#', class: "btn btn-lg btn-primary m-2" %>
       <%= link_to "Sign up", new_user_path, class: "btn btn-lg btn-primary m-2" %>
-      <%= link_to 'Login with Line', oauth_oauth_path(:provider => :line) %>
+      <%= link_to 'Login with Line', auth_at_provider_path(:provider => :line) %>
     </div>
   </div>
 </div>
