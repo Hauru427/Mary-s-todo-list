@@ -16,4 +16,9 @@ Rails.application.routes.draw do
 
   # linebot
   post '/callback', to: 'reminders#callback'
+
+  # Lineログイン・認証
+  post "oauth/callback" => "oauths#callback"
+  get "oauth/callback" => "oauths#callback" # for use with Github, Facebook
+  get "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
 end
