@@ -18,7 +18,7 @@ class RemindersController < ApplicationController
       text: "#{card.title}の期限が近づいています。"
     }
 
-    response = client.push_message(card.user.line_user_id, message)
+    response = client.push_message(user.line_id, message)
     Rails.logger.info("LINE reminder sent: #{response}")
   end
 
