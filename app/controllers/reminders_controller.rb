@@ -22,12 +22,12 @@ class RemindersController < ApplicationController
         send_normal_line_reminder(card, label)
       end
     end
+  end
 
-    # 1時間前のリマインダー
-    def send_hourly_reminders
-      Card.where('due_date <= ?', Time.now + 1.hour).where('due_date > ?', Time.now).find_each do |card|
-        send_normal_line_reminder(card, "1時間前")
-      end
+  # 1時間前のリマインダー
+  def send_hourly_reminders
+    Card.where('due_date <= ?', Time.now + 1.hour + 5.minutes).where('due_date > ?', Time.now).find_each do |card|
+      send_normal_line_reminder(card, "1時間前")
     end
   end
 
