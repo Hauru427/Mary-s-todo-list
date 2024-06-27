@@ -5,9 +5,9 @@ class RemindersController < ApplicationController
 
   def send_reminders
     current_time = Time.now
-    send_daily_reminders if current_time.hour == 9
+    send_daily_reminders if current_time.hour == 13
     send_hourly_reminders
-    send_merry_reminders if current_time.hour == 12
+    send_merry_reminders if current_time.hour == 15
   end
 
   def send_daily_reminders
@@ -45,17 +45,19 @@ class RemindersController < ApplicationController
   end
 
   def send_merry_reminders
-    Card.where('due_date < ?', Time.now).find_each do |card|
-      days_overdue = (Time.now.to_date - card.due_date.to_date).to_i
-      case days_overdue
-      when 1
-        send_merry_line_reminder(card, "今ゴミ捨て場にいるの、#{card.title}は終わらせた？")
-      when 2
-        send_merry_line_reminder(card, "今あなたの家の前にいるの")
-      when 3
-        send_merry_line_reminder(card, "もう#{card.title}はいらないわね")
-        card.destroy
-      end
+    overdue_cards = Card.where('due_date < ?', Time.now).order(due_date: :asc)
+    return if overdue_cards.empty?
+
+    card = overdue_cards.first
+    days_overdue = (Time.now.to_date - card.due_date.to_date).to_i
+    case days_overdue
+    when 1
+      send_merry_line_reminder(card, "今ゴミ捨て場にいるの、#{card.title}は終わらせた？")
+    when 2
+      send_merry_line_reminder(card, "今あなたの家の前にいるの")
+    when 3
+      send_merry_line_reminder(card, "もう#{card.title}はいらないわね")
+      card.destroy
     end
   end
 
