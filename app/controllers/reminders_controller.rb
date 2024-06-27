@@ -7,7 +7,7 @@ class RemindersController < ApplicationController
     current_time = Time.now
     send_daily_reminders if current_time.hour == 9
     send_hourly_reminders
-    send_merry_reminders
+    send_merry_reminders if current_time.hour == 12
   end
 
   def send_daily_reminders
