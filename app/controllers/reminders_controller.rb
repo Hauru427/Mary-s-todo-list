@@ -12,8 +12,8 @@ class RemindersController < ApplicationController
 
   def send_daily_reminders
     reminders = {
-      '3日前' => 3.days
-      '2日前' => 2.days
+      '3日前' => 3.days,
+      '2日前' => 2.days,
       '1日前' => 1.day
     }
 
