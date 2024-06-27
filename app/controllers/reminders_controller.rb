@@ -10,7 +10,7 @@ class RemindersController < ApplicationController
 
   def send_normal_reminders
     Card.where('due_date <= ?', Time.now + 1.hour).find_each do |card|
-      send_line_reminder(card)
+      send_normal_line_reminder(card)
     end
   end
 
