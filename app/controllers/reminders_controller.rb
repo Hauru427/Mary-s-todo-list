@@ -49,11 +49,11 @@ class RemindersController < ApplicationController
       days_overdue = (Time.now.to_date - card.due_date.to_date).to_i
       case days_overdue
       when 1
-        send_merry_line_reminder(card, "test")
+        send_merry_line_reminder(card, "今ゴミ捨て場にいるの、#{card.title}は終わらせた？")
       when 2
-        send_merry_line_reminder(card, "test2")
+        send_merry_line_reminder(card, "今あなたの家の前にいるの")
       when 3
-        send_merry_line_reminder(card, "test3")
+        send_merry_line_reminder(card, "もう#{card.title}はいらないわね")
         card.destroy
       end
     end
@@ -65,7 +65,7 @@ class RemindersController < ApplicationController
     return unless user.line_id.present?
     message = {
       type: 'text',
-      text: "もしもし、私メリー、#{card.title}がまだ終わってないわね。#{message_part}"
+      text: "もしもし、私メリー、#{message_part}"
     }
 
     response = client.push_message(user.line_id, message)
