@@ -4,13 +4,30 @@ class RemindersController < ApplicationController
   skip_before_action :require_login, only: %i[callback]
 
   def send_reminders
-    send_normal_reminders
+    current_time = Time.now
+    send_daily_reminders if current_time.hour == 9
+    send_hourly_reminders
     send_merry_reminders
   end
 
-  def send_normal_reminders
-    Card.where('due_date <= ?', Time.now + 1.hour).find_each do |card|
-      send_normal_line_reminder(card)
+  def send_daily_reminders
+    reminders = {
+      '3日前' => 3.days
+      '2日前' => 2.days
+      '1日前' => 1.day
+    }
+
+    reminders.each do |label, time_before|
+      Card.where(due_date: (Time.now.beginning_of_day + time_before))..(Time.now.end_of_day + time_before).find_each do |card|
+        send_normal_line_reminder(card, label)
+      end
+    end
+
+    # 1時間前のリマインダー
+    def send_hourly_reminders
+      Card.where('due_date <= ?', Time.now + 1.hour).where('due_date > ?', Time.now).find_each do |card|
+        send_normal_line_reminder(card, "1時間前")
+      end
     end
   end
 
@@ -20,7 +37,7 @@ class RemindersController < ApplicationController
     return unless user.line_id.present?
     message = {
       type: 'text',
-      text: "#{card.title}の期限が近づいています。"
+      text: "#{card.title}の期限が#{timing}に近づいています。"
     }
 
     response = client.push_message(user.line_id, message)
@@ -42,7 +59,7 @@ class RemindersController < ApplicationController
     end
   end
 
-  def send_merry_line_reminder(card, messae_part)
+  def send_merry_line_reminder(card, message_part)
     user = card.list.user
 
     return unless user.line_id.present?
