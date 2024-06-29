@@ -5,9 +5,9 @@ class RemindersController < ApplicationController
 
   def send_reminders
     current_time = Time.now
-    send_daily_reminders if current_time.hour == 13
+    send_daily_reminders if current_time.hour == 14
     send_hourly_reminders
-    send_merry_reminders if current_time.hour == 12
+    send_merry_reminders if current_time.hour == 15
   end
 
   def send_daily_reminders
@@ -31,7 +31,7 @@ class RemindersController < ApplicationController
     end
   end
 
-  def send_normal_line_reminder(card)
+  def send_normal_line_reminder(card, timing)
     user = card.list.user
 
     return unless user.line_id.present?
