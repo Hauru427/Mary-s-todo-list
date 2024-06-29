@@ -7,7 +7,7 @@ class RemindersController < ApplicationController
     current_time = Time.now
     send_daily_reminders if current_time.hour == 13
     send_hourly_reminders
-    send_merry_reminders if current_time.hour == 15
+    send_merry_reminders if current_time.hour == 12
   end
 
   def send_daily_reminders
@@ -18,7 +18,7 @@ class RemindersController < ApplicationController
     }
 
     reminders.each do |label, time_before|
-      Card.where(due_date: (Time.now.beginning_of_day + time_before))..(Time.now.end_of_day + time_before).find_each do |card|
+      Card.where(due_date: (Time.now.beginning_of_day + time_before)..(Time.now.end_of_day + time_before)).find_each do |card|
         send_normal_line_reminder(card, label)
       end
     end
