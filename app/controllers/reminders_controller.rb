@@ -51,7 +51,7 @@ class RemindersController < ApplicationController
 
     card = overdue_cards.first
     days_overdue = (Time.now.to_date - card.due_date.to_date).to_i
-    Rails.logger.info("Card ID: #{card.id}, Days overdue: #{days_overdue}", Title:) # デバッグ用ログ
+    Rails.logger.info("Card ID: #{card.id}, Days overdue: #{days_overdue}") # デバッグ用ログ
 
     case days_overdue
     when 1
