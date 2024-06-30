@@ -7,7 +7,7 @@ class RemindersController < ApplicationController
     current_time = Time.now
     send_daily_reminders if current_time.hour == 5
     send_hourly_reminders
-    send_merry_reminders if current_time.hour == 6
+    send_merry_reminders if current_time.hour == 8
   end
 
   def send_daily_reminders
@@ -44,6 +44,7 @@ class RemindersController < ApplicationController
     Rails.logger.info("LINE reminder sent: #{response}")
   end
 
+  # メリーさんのリマインダー
   def send_merry_reminders
     overdue_cards = Card.where('due_date < ?', Time.now).order(due_date: :asc)
     return if overdue_cards.empty?
