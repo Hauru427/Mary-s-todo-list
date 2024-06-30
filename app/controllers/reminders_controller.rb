@@ -51,6 +51,8 @@ class RemindersController < ApplicationController
 
     card = overdue_cards.first
     days_overdue = (Time.now.to_date - card.due_date.to_date).to_i
+    Rails.logger.info("Card ID: #{card.id}, Days overdue: #{days_overdue}") # デバッグ用ログ
+    
     case days_overdue
     when 1
       send_merry_line_reminder(card, "今ゴミ捨て場にいるの、#{card.title}は終わらせた？")
