@@ -9,6 +9,7 @@
             <li class="nav-item">
               <%= link_to "リスト作成", new_list_path, class: "nav-link" %>
             </li>
+            <%# ↑ここに配置する必要はないのでTodo機能React化後改修 %>
           </ul>
           <form class="d-flex">
             <input class="form-control me-2" type="search" placeholder="検索" aria-label="Search">
@@ -19,11 +20,11 @@
                 ユーザー名
               <% end %>
               <ul class="dropdown-menu doropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                <li><%= link_to "ユーザー編集", '#', class: "dropdown-item" %></li>
-                <li><%= link_to "設定", '#', class: "dropdown-item" %></li>
-                <li><%= link_to "利用規約", '#', class: "dropdown-item" %></li>
-                <li><%= link_to "プライバシーポリシー", '#', class: "dropdown-item" %></li>
-                <li><%= link_to "ログアウト", logout_path, data: { turbo_method: :delete} , class: "dropdown-item" %></li>
+                <li><%= link_to t('header.user_edit'), '#', class: "dropdown-item" %></li>
+                <li><%= link_to t('header.setting'), '#', class: "dropdown-item" %></li>
+                <li><%= link_to t('header.terms_of_use'), '#', class: "dropdown-item" %></li>
+                <li><%= link_to t('header.privacy_policy'), '#', class: "dropdown-item" %></li>
+                <li><%= link_to t('header.logout'), logout_path, data: { turbo_method: :delete} , class: "dropdown-item" %></li>
               </ul>
             </li>
           </ul>
