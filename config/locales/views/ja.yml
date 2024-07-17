@@ -8,6 +8,11 @@ ja:
       email: メールアドレス
       password: パスワード
       user_name: ユーザー名
+  defaults:
+    create: 作成
+    search_word: 検索ワード
+    edit: 編集
+    delete_confirm: 削除しますか？
   top:
     login: ログイン
     guest_login: ゲストログイン
@@ -31,6 +36,11 @@ ja:
     create:
       success: ユーザー登録が完了しました
       failure: ユーザー登録に失敗しました
+  profiles:
+    show:
+      title: プロフィール
+    edit:
+      title: プロフィール編集
   header:
     login: ログイン
     logout: ログアウト
