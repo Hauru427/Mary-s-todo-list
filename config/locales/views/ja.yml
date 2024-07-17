@@ -41,10 +41,11 @@ ja:
       title: プロフィール
     edit:
       title: プロフィール編集
+      success: プロフィールが変更されました
   header:
     login: ログイン
     logout: ログアウト
-    user_edit: ユーザー編集
+    user_edit: profile
     setting: 設定
     terms_of_use: 利用規約
     privacy_policy: プライバシーポリシー
