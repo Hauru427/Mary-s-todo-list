@@ -15,6 +15,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    @user = current_user
+    @user.destroy
+    flash[:success] = t('users.destroy.success')
+    redirect_to :root, status: :see_other
+  end
+
   private
 
   def user_params

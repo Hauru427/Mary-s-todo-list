@@ -36,6 +36,9 @@ ja:
     create:
       success: ユーザー登録が完了しました
       failure: ユーザー登録に失敗しました
+    destroy:
+      success: ユーザーを削除しました
+      confirm: 本当に削除しますか？
   profiles:
     show:
       title: プロフィール
