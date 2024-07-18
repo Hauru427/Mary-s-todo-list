@@ -55,3 +55,6 @@ ja:
     privacy_policy: プライバシーポリシー
     bookmark_index: ブックマーク一覧
     profile: プロフィール
+  password_reset:
+    sending: パスワードリセットのメールを送信しました
+    reset: パスワードがリセットされました
