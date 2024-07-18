@@ -90,6 +90,8 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+  # パスワードリセットメールの確認
+  gem 'letter_opener_web', '~> 3.0'
 end
 
 group :test do
