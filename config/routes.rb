@@ -26,5 +26,5 @@ Rails.application.routes.draw do
   resource :profile, only: %i[show edit update]
 
   # パスワードリセット
-  resources :password_resets, only: %i[create edit update]
+  resources :password_resets, only: %i[create edit update new]
 end
