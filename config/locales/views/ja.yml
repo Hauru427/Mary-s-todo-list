@@ -13,6 +13,7 @@ ja:
     search_word: 検索ワード
     edit: 編集
     delete_confirm: 削除しますか？
+    password_reset: パスワードリセット
   top:
     login: ログイン
     guest_login: ゲストログイン
