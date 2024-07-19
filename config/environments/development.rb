@@ -70,4 +70,9 @@ Rails.application.configure do
 
   # lineログインの開発環境でのテストのため
   config.hosts << 'b6f3-240b-252-8880-1000-4066-8f46-db8a-c2db.ngrok-free.app'
+
+  # パスワードリセットメールの確認
+  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
 end

@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
-  get 'profiles/show'
-  get 'profiles/edit'
-  get 'profiles/update'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
   root "static_pages#top"
@@ -26,5 +23,8 @@ Rails.application.routes.draw do
   get "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
 
   # プロフィール
-  resource :profile, only: [:show, :edit, :update]
+  resource :profile, only: %i[show edit update]
+
+  # パスワードリセット
+  resources :password_resets, only: %i[create edit update new]
 end

@@ -13,6 +13,7 @@ ja:
     search_word: 検索ワード
     edit: 編集
     delete_confirm: 削除しますか？
+    password_reset: パスワードリセット
   top:
     login: ログイン
     guest_login: ゲストログイン
@@ -54,3 +55,12 @@ ja:
     privacy_policy: プライバシーポリシー
     bookmark_index: ブックマーク一覧
     profile: プロフィール
+  password_reset:
+    request:
+      title: パスワードリセット申請
+      button: 申請
+    edit:
+      title: パスワード再設定
+      button: リセット
+    sending: パスワードリセットのメールを送信しました
+    reset: パスワードがリセットされました
