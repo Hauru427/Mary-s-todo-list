@@ -1,0 +1,38 @@
+<div class="topPage">
+  <div class="listWrapper">
+    <% @lists.each do |list| %>
+      <div class="list">
+        <div class="list_header">
+          <h2 class="list_header_title"><%= list.title %></h2>
+          <div class="list_header_action">
+            <%= link_to list_path(list), data: { turbo_method: :delete, turbo_confirm: "削除しますか？"}, class: 'btn btn-outline-secondary' do %>
+              <i class="fas fa-trash"></i>
+            <% end %>
+            <%= link_to edit_list_path(list), class: 'btn btn-outline-secondary' do %>
+              <i class="fas fa-pen"></i>
+            <% end %> 
+          </div>
+        </div>
+        <div class="cardWrapper">
+          <% list.cards.each do |card| %>
+            <%= link_to list_card_path(list, card), class:"cardDetail_link" do %>
+              <div class="card">
+                <h3 class="card_title"><%= card.title %></h3>
+                <%= card.due_date %>
+                <% if card.memo.size > 0 %>
+                  <div class="card_detail is-exist"><i class="fas fa-bars"></i></div>
+                <% end %>
+              </div>
+            <% end %>
+          <% end %>
+          <div class="addCard">
+            <%= link_to new_list_card_path(list), class:"addCard_link" do %>
+              <i class="far fa-plus-square"></i>
+            <% end %>
+            さらにカードを追加
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

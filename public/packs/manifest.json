@@ -1,0 +1,36 @@
+{
+  "application.js": "/packs/js/application-df51dc1e4a77b33e6e79.js",
+  "application.js.map": "/packs/js/application-df51dc1e4a77b33e6e79.js.map",
+  "entrypoints": {
+    "application": {
+      "js": [
+        "/packs/js/application-df51dc1e4a77b33e6e79.js"
+      ],
+      "js.map": [
+        "/packs/js/application-df51dc1e4a77b33e6e79.js.map"
+      ]
+    },
+    "hello_react": {
+      "js": [
+        "/packs/js/hello_react-58601e05250407db2fc4.js"
+      ],
+      "js.map": [
+        "/packs/js/hello_react-58601e05250407db2fc4.js.map"
+      ]
+    },
+    "hello_typescript": {
+      "js": [
+        "/packs/js/hello_typescript-736830131a936b0890a3.js"
+      ],
+      "js.map": [
+        "/packs/js/hello_typescript-736830131a936b0890a3.js.map"
+      ]
+    }
+  },
+  "hello_react.js": "/packs/js/hello_react-58601e05250407db2fc4.js",
+  "hello_react.js.map": "/packs/js/hello_react-58601e05250407db2fc4.js.map",
+  "hello_typescript.js": "/packs/js/hello_typescript-736830131a936b0890a3.js",
+  "hello_typescript.js.map": "/packs/js/hello_typescript-736830131a936b0890a3.js.map",
+  "vendors~actioncable.js": "/packs/js/vendors~actioncable-21104559707729ae9208.chunk.js",
+  "vendors~actioncable.js.map": "/packs/js/vendors~actioncable-21104559707729ae9208.chunk.js.map"
+}
