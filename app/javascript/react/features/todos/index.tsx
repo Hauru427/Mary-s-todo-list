@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Item, Category } from "./types";
+import ItemCard from "./components/ItemCard";
 
 // 初期アイテムモックリストの定義
 const initialItems = [
@@ -44,11 +45,9 @@ export default function Todos() {
           <div className="min-vh-100" style={{ width: '350px' }}>
             {filterdItems(category.id).map((item) => (
               <div key={item.id} className="m-2">
-                <div className="border rounded bg-white hover:bg-light" style={{ minHeight: '80px' }}>
-                  <div className="d-flex flex-column p-2">
-                    <div className="text-sm">{item.title}</div>
-                  </div>
-                </div>
+                <ItemCard
+                  item={item}
+                />
               </div>
             ))}
           </div>
