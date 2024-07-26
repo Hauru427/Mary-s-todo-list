@@ -32,3 +32,8 @@
 
 # 環境変数（LINE）
 .env
+
+/app/assets/builds/*
+!/app/assets/builds/.keep
+
+/node_modules
