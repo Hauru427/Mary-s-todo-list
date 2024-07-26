@@ -1,14 +1,17 @@
-export interface Item {
+// Cardインターフェースの定義
+export interface Card {
   id: number;
   title: string;
-  content: string;
-  category: string;
-  assignee: string;
-  position: number;
-  category_id: number;
+  memo?: string; // memoはnull許容なのでオプションとして定義
+  list_id: number;
+  due_date?: string; // due_dateはnull許容なのでオプションとして定義
+  position?: number; // positionはnull許容なのでオプションとして定義
+  user_id: number;
 }
 
-export interface Category {
+// Listインターフェースの定義
+export interface List {
   id: number;
-  name: string;
+  title: string;
+  user_id: number;
 }

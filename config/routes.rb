@@ -9,9 +9,18 @@ Rails.application.routes.draw do
   post 'login', to: 'user_sessions#create'
   delete 'logout', to: 'user_sessions#destroy'
 
-  # リスト関連
+  # # リスト関連
   resources :list, only: %i[index new create edit update destroy] do
     resources :card, only: %i[new create show edit update destroy]
+  end
+
+  # React化に伴い、ListとCardのルーティングを下記のように変更
+  resources :cards, only: [:index, :create, :update, :destroy] do
+    post :update_all_position, on: :collection
+  end
+
+  resources :lists, only: [:index, :create, :destroy] do
+    delete :destroy_all_items, on: :member
   end
 
   # linebot

@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
   has_many :lists, dependent: :destroy
+  has_many :cards, dependent: :destroy
   has_many :authentications, dependent: :destroy
   accepts_nested_attributes_for :authentications
   mount_uploader :avatar, AvatarUploader
