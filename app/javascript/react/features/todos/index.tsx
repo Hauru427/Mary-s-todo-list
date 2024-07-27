@@ -2,6 +2,7 @@ import React from "react";
 import { useLists } from './hooks/useLists';
 import { useCards } from './hooks/useCards';
 import CardCard from "./components/CardCard";
+import CardCreateForm from './components/CardCreateForm';
 
 export default function Todos() {
   const { cards, setCards} = useCards();
@@ -33,6 +34,11 @@ export default function Todos() {
               </div>
             ))}
           </div>
+          <CardCreateForm
+            cards={cards}
+            setCards={setCards}
+            listId={list.id}
+          />
         </div>
       ))}
     </div>
