@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useForm, SubmitHandler, FieldValues } from 'react-hook-form';
 import ErrorMessage from './ui/ErrorMessage';
 import Modal from './ui/Modal';
+import DeleteCardButton from './CardDeleteButton';
 import { Card } from '../types'
 
 interface EditCardProps {
@@ -65,7 +66,7 @@ export default function CardEditForm({
     const response = await fetch(`/cards/${cardId}`, {
       method: 'PATCH',
       headers: {
-        'Content-type': 'application/json',
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         card: {
@@ -116,6 +117,12 @@ export default function CardEditForm({
           </button>
         </form>
       </div>
+      <DeleteCardButton
+        cardId={editedCard.id}
+        cards={cards}
+        setCards={setCards}
+        closeModal={closeModal}
+      />
     </Modal>
   )
 }

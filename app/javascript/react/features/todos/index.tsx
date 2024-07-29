@@ -29,8 +29,8 @@ export default function Todos() {
             {filterdCards(list.id).map((card) => (
               <div key={card.id} className="m-2">
                 <CardCard
-                cards={cards}
-                setCards={setCards}
+                  cards={cards}
+                  setCards={setCards}
                   card={card}
                 />
               </div>
