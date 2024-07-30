@@ -8,11 +8,13 @@ import ListDropdownMenu from "./ListDropdownMenu";
 type ListProps = {
   lists: List[]
   setLists: React.Dispatch<React.SetStateAction<List[]>>
+  searchQuery: string
 }
 
 export default function List({
   lists,
   setLists,
+  searchQuery,
 }: ListProps) {
   const { cards, setCards } = useCards()
 
@@ -20,7 +22,11 @@ export default function List({
     return cards
     .filter(
       (card) =>
-        card.list_id === listId
+        card.list_id === listId &&
+        (
+          card.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          card.memo.toLowerCase().includes(searchQuery.toLowerCase())
+        )
     ).sort((a, b) => a.position - b.position)
   }
 
