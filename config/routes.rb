@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   end
 
   resources :lists, only: [:index, :create, :destroy] do
-    delete :destroy_all_items, on: :member
+    delete :destroy_all_cards, on: :member
   end
 
   # linebot
