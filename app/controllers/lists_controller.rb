@@ -25,7 +25,7 @@ class ListsController < ActionController::API
   def destroy_all_cards
     list = List.find(params[:id])
 
-    if destroy_cards(list.items)
+    if destroy_cards(list.cards)
       render json: { message: '削除が成功しました' }, status: :ok
     else
       render json: { error: '削除に失敗しました' }, status: :unprocessable_entity
