@@ -8,6 +8,7 @@ import {
   DropResult,
 } from 'react-beautiful-dnd';
 import { useCards } from '../hooks/useCards';
+import { useDragAndDrop } from '../hooks/useDragAndDrop';
 import { List } from '../types';
 import CardCard from "./CardCard";
 import CardCreateForm from "./CardCreateForm";
@@ -38,9 +39,19 @@ export default function List({
     ).sort((a, b) => a.position - b.position)
   }
 
+  const { onDragEnd, updatePositionOfAllCards } = useDragAndDrop()
+
+  const handleDragEnd = async (result: DropResult) => {
+    const finalCards = onDragEnd(result, cards, filterdCards)
+    if (finalCards) {
+      setCards(finalCards)
+      await updatePositionOfAllCards(finalCards)
+    }
+  }
+
   return (
     <>
-      <DragDropContext>
+      <DragDropContext onDragEnd={handleDragEnd}>
         {lists.map((list) => (
           <div key={list.id} className="ms-4 d-flex flex-column border rounded" style={{ maxHeight: '100%', backgroundColor: '#d1d5db' }}>
             <div className="p-2 d-flex justify-content-between align-items-center position-relative">
