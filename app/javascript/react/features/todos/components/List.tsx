@@ -1,5 +1,14 @@
 import React from "react";
+import {
+  DragDropContext,
+  Droppable,
+  Draggable,
+  DroppableProvided,
+  DraggableProvided,
+  DropResult,
+} from 'react-beautiful-dnd';
 import { useCards } from '../hooks/useCards';
+import { useDragAndDrop } from '../hooks/useDragAndDrop';
 import { List } from '../types';
 import CardCard from "./CardCard";
 import CardCreateForm from "./CardCreateForm";
@@ -30,38 +39,68 @@ export default function List({
     ).sort((a, b) => a.position - b.position)
   }
 
+  const { onDragEnd, updatePositionOfAllCards } = useDragAndDrop()
+
+  const handleDragEnd = async (result: DropResult) => {
+    const finalCards = onDragEnd(result, cards, filterdCards)
+    if (finalCards) {
+      setCards(finalCards)
+      await updatePositionOfAllCards(finalCards)
+    }
+  }
+
   return (
     <>
-      {lists.map((list) => (
-        <div key={list.id} className="ms-4 d-flex flex-column border rounded" style={{ maxHeight: '100%', backgroundColor: '#d1d5db' }}>
-          <div className="ticky-top p-2 d-flex justify-content-between align-items-center position-relative">
-            <h5 className="m-0">{list.title}</h5>
-            <ListDropdownMenu
-            lists={lists}
-            setLists={setLists}
-            list={list}
-            cards={cards}
-            setCards={setCards}
-          />
-          </div>
-          <div className="min-vh-100" style={{ width: '350px' }}>
-            {filterdCards(list.id).map((card) => (
-              <div key={card.id} className="m-2">
-                <CardCard
-                  cards={cards}
-                  setCards={setCards}
-                  card={card}
-                />
+      <DragDropContext onDragEnd={handleDragEnd}>
+        {lists.map((list) => (
+          <div key={list.id} className="ms-4 d-flex flex-column border rounded" style={{ maxHeight: '100%', backgroundColor: '#d1d5db' }}>
+            <div className="p-2 d-flex justify-content-between align-items-center position-relative">
+              <h5 className="m-0">{list.title}</h5>
+              <ListDropdownMenu
+                lists={lists}
+                setLists={setLists}
+                list={list}
+                cards={cards}
+                setCards={setCards}
+              />
+            </div>
+            <Droppable droppableId={list.id.toString()}>
+              {(provided: DroppableProvided) => (
+                <div
+                  {...provided.droppableProps}
+                  ref={provided.innerRef}
+                  className="min-vh-100" style={{ width: '350px' }}
+                >
+                  {filterdCards(list.id).map((card,index) => (
+                    <div key={card.id} className="m-2">
+                      <Draggable
+                        key={card.id}
+                        draggableId={card.id.toString()}
+                        index={index}
+                      >
+                        {(provided: DraggableProvided) => (
+                          <CardCard
+                            cards={cards}
+                            setCards={setCards}
+                            card={card}
+                            provided={provided}
+                          />
+                        )}
+                      </Draggable>
+                    </div>
+                ))}
+                {provided.placeholder}
               </div>
-            ))}
+              )}
+            </Droppable>
+            <CardCreateForm
+              cards={cards}
+              setCards={setCards}
+              listId={list.id}
+            />
           </div>
-          <CardCreateForm
-            cards={cards}
-            setCards={setCards}
-            listId={list.id}
-          />
-        </div>
-      ))}
+        ))}
+      </DragDropContext>
     </>
   );
 }
