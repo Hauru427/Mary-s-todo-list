@@ -1,4 +1,6 @@
 class PomodoroSessionsController < ApplicationController
+  before_action :require_login
+
   def create
     @pomodoro_sessions = current_user.pomodoro_sessions.new(pomodoro_session_params)
     if @pomodoro_session.save
