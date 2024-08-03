@@ -2,7 +2,7 @@ class PomodoroSessionsController < ApplicationController
   before_action :require_login
 
   def create
-    @pomodoro_sessions = current_user.pomodoro_sessions.new(pomodoro_session_params)
+    @pomodoro_session = current_user.pomodoro_sessions.new(pomodoro_session_params)
     if @pomodoro_session.save
       render json: @pomodoro_session, status: :created
     else
@@ -15,9 +15,14 @@ class PomodoroSessionsController < ApplicationController
     render json: @pomodoro_sessions
   end
 
+  def count
+    count = PomodoroSession.count
+    render json: { count: count }
+  end
+
   private
 
   def pomodoro_session_params
-    params.require(:pomodoro_session).permit(:start_time, :end_time)
+    params.require(:pomodoro_session).permit(:start_time, :end_time, :count)
   end
 end

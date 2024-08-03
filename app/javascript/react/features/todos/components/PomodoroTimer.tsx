@@ -1,11 +1,39 @@
 import React, { useState, useEffect } from 'react';
 
+//CSRFトークンを取得する関数の追加
+const getCsrfToken = () => {
+  return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+};
+
 const PomodoroTimer = () => {
-    const [time, setTime] = useState(1500); // 25分 = 1500秒
+    const [time, setTime] = useState(15); // 25分 = 1500秒
     const [isRunning, setIsRunning] = useState(false);
     const [isBreak, setIsBreak] = useState(false) //休憩時間の状態
     const [pomodoroCount, setPomodoroCount] = useState(0) //ポモドーロ回数の状態
     const [volume, setVolume] = useState(0.5);
+    // バックエンドからポモドーロ回数を取得する関数を追加
+    const fetchPomodoroCount = async () => {
+      try {
+        const response = await fetch('/pomodoro_sessions/count', {
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': getCsrfToken()
+          }
+        });
+        if (!response.ok) {
+          throw new Error('サーバーエラーが発生しました。');
+        }
+        const data = await response.json();
+        setPomodoroCount(data.count);
+      } catch (error) {
+        console.error('ポモドーロカウント取得エラー:', error);
+      }
+    };
+
+    //コンポーネントの初期化時にポモドーロ回数を取得するように変更
+    useEffect(() => {
+      fetchPomodoroCount();
+    }, []);
 
     useEffect(() => {
         let timer: number;
@@ -25,14 +53,41 @@ const PomodoroTimer = () => {
             playChime();
             if(isBreak) {
               setIsBreak(false);
-              setTime(1500);
+              setTime(15);
             } else {
               setIsBreak(true);
-              setTime(300);
-              setPomodoroCount(prevCount => prevCount + 1); //ポモドーロ回数を増やす
+              setTime(7);
+              setPomodoroCount(prevCount => {
+                const newCount = prevCount + 1;
+                savePomodoroSession(newCount);
+                return newCount;
+              }); //ポモドーロ回数を増やす
             }
         }
     }, [time, isRunning, isBreak]);
+
+    const savePomodoroSession = async (count) => {
+      const csrfToken = getCsrfToken();
+      try{
+        const response = await fetch('/pomodoro_sessions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': csrfToken
+          },
+          body: JSON.stringify({
+            start_time: new Date().toISOString(),
+            end_time: null,
+            count: count
+          })
+        });
+        if (!response.ok) {
+          throw new Error('サーバーエラーが発生しました。');
+        }
+      } catch (error) {
+        console.error('ポモドーロセーブエラー:', error);
+      }
+    };
 
     const playBeep = () => {
         const context = new AudioContext();
@@ -68,7 +123,7 @@ const PomodoroTimer = () => {
     const handleReset = () => {
         setIsRunning(false);
         setIsBreak(false);
-        setTime(1500);
+        setTime(15);
     };
 
     const handleVolumeChange = (event: React.ChangeEvent<HTMLInputElement>) => {

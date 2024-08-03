@@ -38,5 +38,9 @@ Rails.application.routes.draw do
   resources :password_resets, only: %i[create edit update new]
 
   # ポモドーロタイマー
-  resources :pomodoro_sessions, only: [:create, :index]
+  resources :pomodoro_sessions, only: [:create, :index] do
+    collection do
+      get 'count'
+    end
+  end
 end
