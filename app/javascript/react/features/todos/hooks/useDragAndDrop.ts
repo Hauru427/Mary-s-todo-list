@@ -91,7 +91,7 @@ export const useDragAndDrop =() => {
 
   const updatePositionOfAllCards = useCallback(async (cards: Card[]) => {
     try {
-      const response = await fetch('/cards/update_all_position', {
+      const response = await fetch(`/cards/update_all_position`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

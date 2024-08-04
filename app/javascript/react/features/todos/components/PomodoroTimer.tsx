@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
 
+interface PomodoroTimerProps {
+  cardId: number;
+}
+
 //CSRFトークンを取得する関数の追加
 const getCsrfToken = () => {
   return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 };
 
-const PomodoroTimer = () => {
+const PomodoroTimer: React.FC<PomodoroTimerProps> = ({ cardId }) => {
     const [time, setTime] = useState(15); // 25分 = 1500秒
     const [isRunning, setIsRunning] = useState(false);
     const [isBreak, setIsBreak] = useState(false) //休憩時間の状態
@@ -14,7 +18,7 @@ const PomodoroTimer = () => {
     // バックエンドからポモドーロ回数を取得する関数を追加
     const fetchPomodoroCount = async () => {
       try {
-        const response = await fetch('/pomodoro_sessions/count', {
+        const response = await fetch(`/pomodoro_sessions/count?card_id=${cardId}`, {
           headers: {
             'Content-Type': 'application/json',
             'X-CSRF-Token': getCsrfToken()
@@ -78,8 +82,9 @@ const PomodoroTimer = () => {
           body: JSON.stringify({
             start_time: new Date().toISOString(),
             end_time: null,
-            count: count
-          })
+            count: count,
+            card_id: cardId,
+          }),
         });
         if (!response.ok) {
           throw new Error('サーバーエラーが発生しました。');

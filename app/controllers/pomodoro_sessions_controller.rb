@@ -6,6 +6,7 @@ class PomodoroSessionsController < ApplicationController
     if @pomodoro_session.save
       render json: @pomodoro_session, status: :created
     else
+      logger.debug @pomodoro_session, status: :created
       render json: @pomodoro_session.errors, status: :unprocessable_entity
     end
   end
@@ -16,13 +17,14 @@ class PomodoroSessionsController < ApplicationController
   end
 
   def count
-    count = PomodoroSession.count
+    card_id = params[:card_id]
+    count = PomodoroSession.where(card_id: card_id).count
     render json: { count: count }
   end
 
   private
 
   def pomodoro_session_params
-    params.require(:pomodoro_session).permit(:start_time, :end_time, :count)
+    params.require(:pomodoro_session).permit(:start_time, :end_time, :count, :card_id)
   end
 end

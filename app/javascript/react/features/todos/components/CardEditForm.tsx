@@ -113,7 +113,7 @@ export default function CardEditForm({
                 {...register('due_date')}
                 className='form-control mb-2'
           />
-          <PomodoroTimer />
+          <PomodoroTimer cardId={editedCard.id} />
           <button type="submit" className="btn btn-primary mt-2">
             Save
           </button>
