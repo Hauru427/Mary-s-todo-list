@@ -4,6 +4,7 @@ import ErrorMessage from './ui/ErrorMessage';
 import Modal from './ui/Modal';
 import DeleteCardButton from './CardDeleteButton';
 import { Card } from '../types'
+import PomodoroTimer from './PomodoroTimer';
 
 interface EditCardProps {
   cards: Card[]
@@ -112,6 +113,7 @@ export default function CardEditForm({
                 {...register('due_date')}
                 className='form-control mb-2'
           />
+          <PomodoroTimer cardId={editedCard.id} />
           <button type="submit" className="btn btn-primary mt-2">
             Save
           </button>

@@ -59,7 +59,7 @@ class CardsController < ActionController::API
     Card.transaction do
       cards.each do |card_data|
         card = Card.find(card_data['id'])
-        list = list.find(card_data['list_id'])
+        list = List.find(card_data['list_id'])
         card.update!(list_id: list.id, position: card_data['position'])
       end
     rescue => e

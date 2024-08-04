@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :lists, dependent: :destroy
   has_many :cards, dependent: :destroy
   has_many :authentications, dependent: :destroy
+  has_many :pomodoro_sessions, dependent: :destroy
   accepts_nested_attributes_for :authentications
   mount_uploader :avatar, AvatarUploader
 
