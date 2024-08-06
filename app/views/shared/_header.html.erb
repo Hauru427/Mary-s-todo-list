@@ -22,8 +22,8 @@
               <ul class="dropdown-menu doropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                 <li><%= link_to t('header.profile'), profile_path, class: "dropdown-item" %></li>
                 <li><%= link_to t('header.setting'), '#', class: "dropdown-item" %></li>
-                <li><%= link_to t('header.terms_of_use'), '#', class: "dropdown-item" %></li>
-                <li><%= link_to t('header.privacy_policy'), '#', class: "dropdown-item" %></li>
+                <li><%= link_to t('header.terms_of_service'), terms_of_service_path, class: "dropdown-item" %></li>
+                <li><%= link_to t('header.privacy_policy'), privacy_policy_path, class: "dropdown-item" %></li>
                 <li><%= link_to t('header.logout'), logout_path, data: { turbo_method: :delete} , class: "dropdown-item" %></li>
               </ul>
             </li>
