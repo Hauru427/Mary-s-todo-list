@@ -43,4 +43,8 @@ Rails.application.routes.draw do
       get 'count'
     end
   end
+
+  #プライバシーポリシーと利用規約
+  get 'privacy_policy', to: 'static_pages#privacy_policy'
+  get 'terms_of_service', to: 'static_pages#terms_of_service'
 end
