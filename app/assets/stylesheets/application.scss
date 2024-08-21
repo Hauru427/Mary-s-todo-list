@@ -19,9 +19,3 @@
  @import "card/show";
  @import "card/edit";
  @import "background";
- /* ドロップダウンメニューの位置を調整 */
- .nav-item.dropdown .dropdown-menu {
-  right: 0;
-  left: auto;
- }
-
