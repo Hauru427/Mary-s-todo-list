@@ -1,5 +1,6 @@
 class RemindersController < ApplicationController
   require 'line/bot'
+  require 'yaml'
   protect_from_forgery except: :callback
   skip_before_action :require_login, only: %i[callback]
 
@@ -19,7 +20,7 @@ class RemindersController < ApplicationController
 
     reminders.each do |label, time_before|
       Card.where(due_date: (Time.now.beginning_of_day + time_before)..(Time.now.end_of_day + time_before)).find_each do |card|
-        send_normal_line_reminder(card, label)
+        send_motivational_line_reminder(card, label, :daily)
       end
     end
   end
@@ -27,54 +28,50 @@ class RemindersController < ApplicationController
   # 1時間前のリマインダー
   def send_hourly_reminders
     Card.where('due_date <= ?', Time.now + 1.hour + 5.minutes).where('due_date > ?', Time.now).find_each do |card|
-      send_normal_line_reminder(card, "1時間前")
+      send_motivational_line_reminder(card, "1時間前", :hourly)
     end
   end
 
-  def send_normal_line_reminder(card, timing)
-    user = card.list.user
-
-    return unless user.line_id.present?
-    message = {
-      type: 'text',
-      text: "#{card.title}の期限が#{timing}に近づいています。"
-    }
-
-    response = client.push_message(user.line_id, message)
-    Rails.logger.info("LINE reminder sent: #{response}")
-  end
-
-  # メリーさんのリマインダー
-  def send_merry_reminders
+  # 遅延タスクに対する名言リマインダー
+  def send_motivational_reminders
     overdue_cards = Card.where('due_date < ?', Time.now).order(due_date: :asc)
     return if overdue_cards.empty?
 
-    card = overdue_cards.first
-    days_overdue = (Time.now.to_date - card.due_date.to_date).to_i
-    Rails.logger.info("Card ID: #{card.id}, Days overdue: #{days_overdue}") # デバッグ用ログ
-
-    case days_overdue
-    when 1
-      send_merry_line_reminder(card, "今ゴミ捨て場にいるの、#{card.title}は終わらせた？")
-    when 2
-      send_merry_line_reminder(card, "今あなたの家の前にいるの")
-    else
-      send_merry_line_reminder(card, "もう#{card.title}はいらないわね")
-      card.destroy
-    end
-  end
-
-  def send_merry_line_reminder(card, message_part)
-    user = card.list.user
-
+    user = overdue_cards.first.list.user
     return unless user.line_id.present?
+
+    task_messages = overdue_cards.map do |card|
+      "#{card.title} (#{card.due_date.to_date}から過ぎています)"
+    end.join("\n")
+
+    quote_data = fetch_random_quote('overdue')
     message = {
       type: 'text',
-      text: "もしもし、私メリー、#{message_part}"
+      text: "以下のタスクが期限切れです:\n#{task_messages}\n\n#{quote_data['content']}\n- #{quote_data['author']}"
     }
 
     response = client.push_message(user.line_id, message)
     Rails.logger.info("LINE reminder sent: #{response}")
+  end
+
+  # 名言をランダムで送信するメソッド
+  def send_motivational_line_reminder(card, timing, category)
+    user = card.list.user
+    return unless user.line_id.present?
+
+    quote_data = fetch_random_quote(category)
+    message = {
+      type: 'text',
+      text: "#{card.title}の期限が#{timing}に近づいています。\n今回の名言\n#{quote_data['content']}\n- #{quote_data['author']}"
+    }
+
+    response = client.push_message(user.line_id, message)
+    Rails.logger.info("LINE reminder sent: #{response}")
+  end
+
+  def fetch_random_quote(category)
+    quotes = YAML.load_file(Rails.root.join('config', 'quotes.yml'))
+    quotes[category.to_s].sample
   end
 
   def callback
