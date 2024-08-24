@@ -224,7 +224,7 @@ Rails.application.config.sorcery.configure do |config|
   # 開発環境
   # config.line.callback_url = 'https://b6f3-240b-252-8880-1000-4066-8f46-db8a-c2db.ngrok-free.app/oauth/callback?provider=line'
   # 本番環境
-  config.line.callback_url = 'https://merystodo-80a52780b2d3.herokuapp.com/oauth/callback?provider=line'
+  config.line.callback_url = 'https://quotelist-4597d721fe3e.herokuapp.com/oauth/callback?provider=line'
   config.line.scope = "profile openid email"
   # config.line.bot_prompt = "normal"
   config.line.user_info_mapping = {user_name: 'displayName', line_id: 'userId'}
