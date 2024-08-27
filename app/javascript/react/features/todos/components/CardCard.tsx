@@ -3,6 +3,7 @@ import useModal from "../hooks/useModal";
 import { Card } from "../types";
 import CardEditForm from "./CardEditForm";
 import { DraggableProvided } from "react-beautiful-dnd";
+import { FaExclamationTriangle } from "react-icons/fa"
 
 type Props = {
   card: Card
@@ -13,6 +14,15 @@ type Props = {
 
 export default function CardCard({ card, cards, setCards, provided } : Props) {
   const { modalRef, openModal, closeModal } = useModal();
+
+  //期限切れかどうかを確認する関数
+  const isExpired = (dueDate: string | null): boolean => {
+    if (!dueDate) return false;
+    const today = new Date();
+    const due = new Date(dueDate);
+    return due < today;
+  };
+
   return (
     <>
       <div
@@ -24,6 +34,11 @@ export default function CardCard({ card, cards, setCards, provided } : Props) {
           <div className="m-2 me-4 text-break text-sm link" onClick={openModal}>
             {card.title}
           </div>
+          {isExpired(card.due_date) && (
+            <div className="m-2 text-danger">
+              <FaExclamationTriangle /> 期限切れ
+            </div>
+          )}
         </div>
       </div>
       <CardEditForm
