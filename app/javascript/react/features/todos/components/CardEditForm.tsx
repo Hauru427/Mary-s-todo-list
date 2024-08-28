@@ -29,7 +29,7 @@ export default function CardEditForm({
     defaultValues: {
       title: editedCard.title,
       memo: editedCard.memo,
-      due_date: editedCard.due_date,
+      due_date: editedCard.due_date ? new Date(editedCard.due_date).toISOString().slice(0, 16) : '',  // タイムゾーン変換
     },
   })
 
@@ -79,6 +79,7 @@ export default function CardEditForm({
     })
     return response
   }
+  console.log(editedCard.due_date); //due_dateの確認
 
   return (
     <Modal modalRef={modalRef}>
