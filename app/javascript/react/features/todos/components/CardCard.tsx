@@ -23,6 +23,18 @@ export default function CardCard({ card, cards, setCards, provided } : Props) {
     return due < today;
   };
 
+  // due_dateをフォーマットする関数
+  const formatDueDate = (dueDate: string | null): string => {
+    if (!dueDate) return "期限なし";
+    const due = new Date(dueDate);
+    const year = due.getFullYear();
+    const month = ("0" + (due.getMonth() + 1)).slice(-2);
+    const day = ("0" + due.getDate()).slice(-2);
+    const hours = ("0" + due.getHours()).slice(-2);
+    const minutes = ("0" + due.getMinutes()).slice(-2);
+    return `${year}/${month}/${day} ${hours}:${minutes}`;
+  };
+
   return (
     <>
       <div
@@ -39,6 +51,9 @@ export default function CardCard({ card, cards, setCards, provided } : Props) {
               <FaExclamationTriangle /> 期限切れ
             </div>
           )}
+          <div className="m-2 text-muted">
+            期日: {formatDueDate(card.due_date)}
+          </div>
         </div>
       </div>
       <CardEditForm
