@@ -1,4 +1,4 @@
-/* 見出し */
+// 見出し
 .font-english {
   font-family: 'Philosopher', sans-serif;
   font-weight: normal;
@@ -14,11 +14,17 @@
   text-align: center;
 }
 
-.about {
+.wrapper {
   max-width: 736px;
   padding: 0 1.5rem;
   margin: 3rem auto 4rem;
 }
 .about p {
   margin-bottom: 2rem;
+}
+
+// 画像
+.description-img {
+  max-width: 100%;
+  margin: 1rem 0;
 }
