@@ -29,7 +29,8 @@ export default function CardEditForm({
     defaultValues: {
       title: editedCard.title,
       memo: editedCard.memo,
-      due_date: editedCard.due_date ? new Date(editedCard.due_date).toISOString().slice(0, 16) : '',  // タイムゾーン変換
+      due_date: editedCard.due_date ? new Date(new Date(editedCard.due_date).getTime() - new Date(editedCard.due_date).getTimezoneOffset() * 60000).toISOString().slice(0, 16)
+      : '',  // タイムゾーン変換
     },
   })
 

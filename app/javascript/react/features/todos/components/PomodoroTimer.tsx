@@ -10,7 +10,7 @@ const getCsrfToken = () => {
 };
 
 const PomodoroTimer: React.FC<PomodoroTimerProps> = ({ cardId }) => {
-    const [time, setTime] = useState(15); // 25分 = 1500秒
+    const [time, setTime] = useState(1500); // 25分 = 1500秒
     const [isRunning, setIsRunning] = useState(false);
     const [isBreak, setIsBreak] = useState(false) //休憩時間の状態
     const [pomodoroCount, setPomodoroCount] = useState(0) //ポモドーロ回数の状態
@@ -57,10 +57,10 @@ const PomodoroTimer: React.FC<PomodoroTimerProps> = ({ cardId }) => {
             playChime();
             if(isBreak) {
               setIsBreak(false);
-              setTime(15);
+              setTime(1500);
             } else {
               setIsBreak(true);
-              setTime(7);
+              setTime(300);
               setPomodoroCount(prevCount => {
                 const newCount = prevCount + 1;
                 savePomodoroSession(newCount);
@@ -128,7 +128,7 @@ const PomodoroTimer: React.FC<PomodoroTimerProps> = ({ cardId }) => {
     const handleReset = () => {
         setIsRunning(false);
         setIsBreak(false);
-        setTime(15);
+        setTime(1500);
     };
 
     const handleVolumeChange = (event: React.ChangeEvent<HTMLInputElement>) => {

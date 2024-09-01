@@ -69,7 +69,7 @@ export default function List({
                 <div
                   {...provided.droppableProps}
                   ref={provided.innerRef}
-                  style={{ width: '350px', flexGrow: 1 }}
+                  style={{ width: '350px', flexGrow: 1, minHeight: '100px' }}
                 >
                   {filterdCards(list.id).map((card,index) => (
                     <div key={card.id} className="m-2">
