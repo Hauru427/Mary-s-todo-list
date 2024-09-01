@@ -14,6 +14,13 @@
   text-align: center;
 }
 
+.section-title {
+  background-color: #E0E0E0; /* 淡いブルー */
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  margin-top: 3rem;
+}
+
 .wrapper {
   max-width: 736px;
   padding: 0 1.5rem;
@@ -27,4 +34,27 @@
 .description-img {
   max-width: 100%;
   margin: 1rem 0;
+  border-radius: 8px;
+}
+
+.grid {
+  display: grid;
+  gap: 2rem 1.5rem;
+  grid-template-columns: repeat(2, 1fr);
+  text-align: center;
+}
+.other-function .description-img {
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.other-function h6 {
+  font-weight: bolder;
+  margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
 }
