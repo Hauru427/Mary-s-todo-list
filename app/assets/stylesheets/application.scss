@@ -18,7 +18,11 @@
  @import "font-awesome";
  @import "card/show";
  @import "card/edit";
- @import "background";
+
+//  全体背景色
+ body {
+  background-color: #728d81;
+ }
  /* ドロップダウンメニューの位置を調整 */
  .nav-item.dropdown .dropdown-menu {
   right: 0;

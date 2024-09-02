@@ -2,6 +2,7 @@
 .font-english {
   font-family: 'Philosopher', sans-serif;
   font-weight: normal;
+  color: #EBE9DF;
 }
 .page-title {
   font-size: 3.5rem;
@@ -15,10 +16,9 @@
 }
 
 .section-title {
-  background-color: #E0E0E0; /* 淡いブルー */
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  margin-top: 3rem;
+  margin-top: 2rem;
+  color: #EBE9DF;
+  font-weight: bold;
 }
 
 .wrapper {
@@ -28,12 +28,22 @@
 }
 .about p {
   margin-bottom: 2rem;
+  color: #EBE9DF;
+  line-height: 1.7;
+}
+.how-to p {
+  color: #EBE9DF;
+  line-height: 1.7;
+  text-align: left;
+}
+span {
+  color: bisque;
 }
 
 // 画像
 .description-img {
   max-width: 100%;
-  margin: 1rem 0;
+  margin-bottom: 1rem;
   border-radius: 8px;
 }
 
@@ -51,6 +61,23 @@
 .other-function h6 {
   font-weight: bolder;
   margin-top: 1rem;
+  color: #EBE9DF;
+}
+
+.btn-custom {
+  background-color: #EBE9DF;
+  color: #505a5f;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  margin-top: 3rem;
+}
+
+.btn-custom:hover {
+  background-color: #F5F4F0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 768px) {

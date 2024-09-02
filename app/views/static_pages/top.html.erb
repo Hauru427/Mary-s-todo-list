@@ -1,12 +1,12 @@
-<h2 class="page-title font-english">"Welcome to the QuoteTodo"</h2>
+<h1 class="page-title font-english">"Welcome to the QuoteTodo"</h1>
 <div class="wrapper">
   <section class="about">
-    <h3 class="heading-large font-english">About App</h3>
+    <h2 class="heading-large font-english">About App</h2>
       <p>このアプリはタスク管理をしながら、モチベーションを向上させるための名言をお届けします。</p>
   </section>
 
   <section class="how-to">
-    <h3 class="heading-large font-english">How to Use</h3>
+    <h2 class="heading-large font-english">How to Use</h2>
       <h5 class="section-title">リストを作成する</h5>
         <%= image_tag 'create_list.png', alt: 'リスト作成', class: 'description-img' %>
         <p>
@@ -35,8 +35,14 @@
           <div class="other-function">
             <h6>リマインド機能</h6>
             <%= image_tag 'line.jpeg', alt: 'Lineの例', class: 'description-img' %>
-            <p>LINEログインをしているユーザーはリマインド通知を受け取ることができます。</p>
+            <p>
+              タスクのリマインド通知をLINEで受け取ることができます。<br>
+              <span>※LINEログインユーザーのみ</span>
+            </p>
           </div>
         </div>
   </section>
+  <div class="text-center">
+    <%= link_to t('top.login'), login_path, class: "btn btn-custom text-center" %>
+  </div>
 </div>
