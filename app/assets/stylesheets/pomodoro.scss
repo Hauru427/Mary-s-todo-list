@@ -1,0 +1,32 @@
+/* 外側の円のコンテナ */
+.circular-progress {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: conic-gradient(
+    #728d81 var(--progress, 0%), 
+    #e9ecef 0%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+/* 内側の円のスタイル */
+.circular-progress::before {
+  content: "";
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: white;
+}
+
+/* プログレスバーの値を表示 */
+.circular-progress .progress-value {
+  position: absolute;
+  font-size: 2.5rem;
+  color: black;
+}
