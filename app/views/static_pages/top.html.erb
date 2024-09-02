@@ -1,10 +1,48 @@
-<div class="container vh-100 d-flex justify-content-center align-items-center">
+<h1 class="page-title font-english">"Welcome to the QuoteTodo"</h1>
+<div class="wrapper">
+  <section class="about">
+    <h2 class="heading-large font-english">About App</h2>
+      <p>このアプリはタスク管理をしながら、モチベーションを向上させるための名言をお届けします。</p>
+  </section>
+
+  <section class="how-to">
+    <h2 class="heading-large font-english">How to Use</h2>
+      <h5 class="section-title">リストを作成する</h5>
+        <%= image_tag 'create_list.png', alt: 'リスト作成', class: 'description-img' %>
+        <p>
+          ログイン後、＋ボタンをクリックしリストの作成ページを開きます。<br>
+          入力欄にリストのタイトルを入力しSaveを押すことで新規にリストが作成されます。
+        </p>
+      
+      <h5 class="section-title">カードを作成する</h5>
+        <%= image_tag 'create_card.png', alt: 'カード作成', class: 'description-img' %>
+        <p>
+          リストに表示されている『 + Add Card 』をクリックしカードの作成ページを開きます。<br>
+          入力欄に各項目を入力しSaveを押すことでカードが作成されます。<br>
+        </p>
+      <h5 class="section-title">作成後のイメージ</h5>
+        <%= image_tag 'list.png', alt: 'リスト・カード作成後イメージ', class: 'description-img' %>
+        <p>
+          それぞれタイトルと期日が表示され、期限切れのタスクにはカードに注意文が表示されます。
+        </p>
+      <h5 class="section-title">その他の機能</h5>
+        <div class="grid">
+          <div class="other-function">
+            <h6>ポモドーロ機能</h6>
+            <%= image_tag 'pomodoro.png', alt:'ポモドーロの画像', class: 'description-img' %>
+            <p>カード内ではポモドーロタイマーを使用し、タスクに集中して取り組むことができます。</p>
+          </div>
+          <div class="other-function">
+            <h6>リマインド機能</h6>
+            <%= image_tag 'line.jpeg', alt: 'Lineの例', class: 'description-img' %>
+            <p>
+              タスクのリマインド通知をLINEで受け取ることができます。<br>
+              <span>※LINEログインユーザーのみ</span>
+            </p>
+          </div>
+        </div>
+  </section>
   <div class="text-center">
-    <h1>Welcome to the QuoteTodo</h1>
-    <div class="d-flex flex-column align-items-center">
-      <%= link_to t('top.login'), login_path, class: "btn btn-lg btn-primary m-2" %>
-      <%= link_to t('top.sign_up'), new_user_path, class: "btn btn-lg btn-primary m-2" %>
-      <%= link_to t('top.login_with_line'), auth_at_provider_path(:provider => :line) %>
-    </div>
+    <%= link_to t('top.login'), login_path, class: "btn btn-custom text-center" %>
   </div>
 </div>

@@ -1,0 +1,10 @@
+<div class="container vh-100 d-flex justify-content-center align-items-center">
+  <div class="text-center">
+    <h1 class="page-title font-english">Welcome to the QuoteTodo</h1>
+    <div class="d-flex flex-column align-items-center">
+      <%= link_to t('top.login'), login_path, class: "btn btn-lg btn-primary m-2" %>
+      <%= link_to t('top.sign_up'), new_user_path, class: "btn btn-lg btn-primary m-2" %>
+      <%= link_to t('top.login_with_line'), auth_at_provider_path(:provider => :line) %>
+    </div>
+  </div>
+</div>

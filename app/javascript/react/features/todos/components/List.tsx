@@ -53,7 +53,7 @@ export default function List({
     <>
       <DragDropContext onDragEnd={handleDragEnd}>
         {lists.map((list) => (
-          <div key={list.id} className="ms-4 d-flex flex-column border rounded" style={{ maxHeight: '100%', backgroundColor: '#d1d5db' }}>
+          <div key={list.id} className="ms-4 d-flex flex-column border rounded h-100" style={{ backgroundColor: '#e3e1d5' }}>
             <div className="p-2 d-flex justify-content-between align-items-center position-relative">
               <h5 className="m-0">{list.title}</h5>
               <ListDropdownMenu
@@ -69,7 +69,7 @@ export default function List({
                 <div
                   {...provided.droppableProps}
                   ref={provided.innerRef}
-                  className="min-vh-100" style={{ width: '350px' }}
+                  style={{ width: '350px', flexGrow: 1, minHeight: '100px', backgroundColor: '#e3e1d5' }}
                 >
                   {filterdCards(list.id).map((card,index) => (
                     <div key={card.id} className="m-2">

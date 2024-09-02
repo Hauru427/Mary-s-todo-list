@@ -27,11 +27,13 @@ export default function CardCard({ card, cards, setCards, provided } : Props) {
   const formatDueDate = (dueDate: string | null): string => {
     if (!dueDate) return "期限なし";
     const due = new Date(dueDate);
-    const year = due.getFullYear();
-    const month = ("0" + (due.getMonth() + 1)).slice(-2);
-    const day = ("0" + due.getDate()).slice(-2);
-    const hours = ("0" + due.getHours()).slice(-2);
-    const minutes = ("0" + due.getMinutes()).slice(-2);
+    const utcTime = due.getTime() + (due.getTimezoneOffset() * 60000); //UTCに変換
+    const japanTime = new Date(utcTime + (9 * 60 * 60 * 1000)); //日本時間に変更
+    const year = japanTime.getFullYear();
+    const month = ("0" + (japanTime.getMonth() + 1)).slice(-2);
+    const day = ("0" + japanTime.getDate()).slice(-2);
+    const hours = ("0" + japanTime.getHours()).slice(-2);
+    const minutes = ("0" + japanTime.getMinutes()).slice(-2);
     return `${year}/${month}/${day} ${hours}:${minutes}`;
   };
 

@@ -1,80 +1,87 @@
-.topPage {
-  min-height: 93vh;
-  padding-top: 30px;
-  background: #791747;
-  overflow-x: scroll;
-  color: #ffffff;
-  .listWrapper {
-    display: flex;
-    height: 100%;
-    align-items: baseline;
-    .list {
-      position: relative;
-      background: #333333;
-      padding: 10px;
-      margin-left: 20px;
-      min-width: 250px;
-      &:last-child {
-        margin-right: 20px;
-      }
-      &_header {
-        margin-bottom: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        &_title {
-          font-size: 20px;
-          margin: 0;
-          color: #ffffff;
-        }
-        &_action {
-          .fa-pen, .fa-trash {
-            font-size: 18px;
-            color: #ffffff;
-          }
-          .fa-trash {
-            margin-right: 10px;
-          }
-        }
-      }
-      .cardWrapper {
-        overflow-y: scroll;
-        max-height: 76vh;
+// 見出し
+.font-english {
+  font-family: 'Philosopher', sans-serif;
+  font-weight: normal;
+  color: #EBE9DF;
+}
+.page-title {
+  font-size: 3.5rem;
+  text-align: center;
+  margin-top: 6rem;
+  line-height: 1.4;
+}
+.heading-large {
+  margin-bottom: 1rem;
+  text-align: center;
+}
 
-        .cardDetail_link {
-          text-decoration: none;
-          color: #ffffff;
-        }
+.section-title {
+  margin-top: 2rem;
+  color: #EBE9DF;
+  font-weight: bold;
+}
 
-        .card {
-          margin-bottom: 10px;
-          padding: 10px;
-          background: #444444;
-          color: #ffffff;
+.wrapper {
+  max-width: 736px;
+  padding: 0 1.5rem;
+  margin: 3rem auto 4rem;
+}
+.about p {
+  margin-bottom: 2rem;
+  color: #EBE9DF;
+  line-height: 1.7;
+}
+.how-to p {
+  color: #EBE9DF;
+  line-height: 1.7;
+  text-align: left;
+}
+span {
+  color: bisque;
+}
 
-          &_title {
-            font-size: 17px;
-            color: #ffffff;
-          }
-          &_detail {
-            display: none;
-            &.is-exist {
-              display: block;
-              color: #999;
-              & > i {
-                display: block;
-              }
-            }
-          }
-        }
+// 画像
+.description-img {
+  max-width: 100%;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+}
 
-        .addCard {
-          color: #ffffff;
-          &_link {
-            color: #ffffff;
-          }
-        }
-      }
-    }
+.grid {
+  display: grid;
+  gap: 2rem 1.5rem;
+  grid-template-columns: repeat(2, 1fr);
+  text-align: center;
+}
+.other-function .description-img {
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.other-function h6 {
+  font-weight: bolder;
+  margin-top: 1rem;
+  color: #EBE9DF;
+}
+
+.btn-custom {
+  background-color: #EBE9DF;
+  color: #505a5f;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  margin-top: 3rem;
+}
+
+.btn-custom:hover {
+  background-color: #F5F4F0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
   }
 }

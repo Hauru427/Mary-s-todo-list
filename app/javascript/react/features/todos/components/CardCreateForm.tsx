@@ -112,7 +112,7 @@ export default function CardCreateForm({
       <div
         className='position-sticky bottom-0 z-index-10 cursor-pointer rounded bg-secondary p-2 text-white'
         onClick={openModal}>
-          + Add item
+          + Add Card
         </div>
     </>
   )

@@ -9,7 +9,7 @@ export default function SearchQuery({ searchQuery, setSearchQuery }: Props) {
   return (
     <input
       type="text"
-      className="form-control corm-control-lg mb-3 w-100"
+      className="form-control corm-control-lg mb-1 w-100"
       value={searchQuery}
       onChange={(e) => setSearchQuery(e.target.value)}
       placeholder="Filter by keyword or by field"
