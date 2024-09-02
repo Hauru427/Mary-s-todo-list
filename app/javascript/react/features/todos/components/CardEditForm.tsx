@@ -86,7 +86,7 @@ export default function CardEditForm({
     <Modal modalRef={modalRef}>
       <div className="d-flex flex-column">
         <div className="d-flex">
-          <h3 className="my-2 flex-grow-1 border-bottom border-dark fs-3 fw-bold">
+          <h3 className="flex-grow-1 border-bottom border-dark fs-3 fw-bold">
             Edit
           </h3>
         </div>

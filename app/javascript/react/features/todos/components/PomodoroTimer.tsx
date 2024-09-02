@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { FaPlay, FaPause, FaRedo } from 'react-icons/fa';
 
 interface PomodoroTimerProps {
   cardId: number;
@@ -145,10 +146,16 @@ const PomodoroTimer: React.FC<PomodoroTimerProps> = ({ cardId }) => {
               <div className="mb-4 text-center">
                 <h4>ポモドーロ回数:{pomodoroCount}</h4>
               </div>
-              <div className="btn-group mb-4" role="group">
-                  <button className="btn btn-success" onClick={handleStart}>開始</button>
-                  <button className="btn btn-warning" onClick={handlePause}>一時停止</button>
-                  <button className="btn btn-danger" onClick={handleReset}>リセット</button>
+              <div className="btn-group-lg mb-4" role="group">
+                  <button className="btn btn-outline-primary mr-2" onClick={handleStart}>
+                    <FaPlay />
+                  </button>
+                  <button className="btn btn-outline-primary" onClick={handlePause}>
+                    <FaPause />
+                  </button>
+                  <button className="btn btn-outline-primary" onClick={handleReset}>
+                    <FaRedo />
+                  </button>
               </div>
               <div className="form-group">
                   <label htmlFor="volume">音量:</label>
