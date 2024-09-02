@@ -135,25 +135,31 @@ const PomodoroTimer: React.FC<PomodoroTimerProps> = ({ cardId }) => {
     const handleVolumeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setVolume(Number(event.target.value));
     };
+    const totalTime = isBreak ? 300 : 1500;
+    const progressPercentage = ((totalTime - time) / totalTime) * 100
 
     return (
       <div className="container mt-4">
           <div className="text-center">
               <h2 className="mb-4">ポモドーロタイマー</h2>
-              <div className="display-4 mb-4">
-                  {`${Math.floor(time / 60)}:${time % 60 < 10 ? '0' : ''}${time % 60}`}
+              <div
+                className="circular-progress"
+                style={{ '--progress': `${progressPercentage}%`} as any}>
+                  <span className="progress-value">
+                    {`${Math.floor(time / 60)}:${time % 60 < 10 ? '0' : ''}${time % 60}`}
+                  </span>
               </div>
-              <div className="mb-4 text-center">
+              <div className="mb-4">
                 <h4>ポモドーロ回数:{pomodoroCount}</h4>
               </div>
               <div className="btn-group-lg mb-4" role="group">
-                  <button className="btn btn-outline-primary mr-2" onClick={handleStart}>
+                  <button type="button" className="btn btn-outline-primary mr-2" onClick={handleStart}>
                     <FaPlay />
                   </button>
-                  <button className="btn btn-outline-primary" onClick={handlePause}>
+                  <button type="button" className="btn btn-outline-primary" onClick={handlePause}>
                     <FaPause />
                   </button>
-                  <button className="btn btn-outline-primary" onClick={handleReset}>
+                  <button type="button" className="btn btn-outline-primary" onClick={handleReset}>
                     <FaRedo />
                   </button>
               </div>
