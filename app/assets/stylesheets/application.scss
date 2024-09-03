@@ -47,6 +47,15 @@
   color: #D3D3D3
 }
 
+// LINEログインボタン
+.line-login:hover {
+  opacity: 0.7;
+}
+
+.line-login:active {
+  opacity: 0.9;
+}
+
  /* GoogleFonts */
 @import url('https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
