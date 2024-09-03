@@ -8,20 +8,20 @@
   <section class="how-to">
     <h2 class="heading-large font-english">How to Use</h2>
       <h5 class="section-title">リストを作成する</h5>
-        <%= image_tag 'create_list.png', alt: 'リスト作成', class: 'description-img' %>
+        <%= image_tag 'create_list.png', alt: 'リスト作成', class: 'description-img border border-secondary' %>
         <p>
           ログイン後、＋ボタンをクリックしリストの作成ページを開きます。<br>
           入力欄にリストのタイトルを入力しSaveを押すことで新規にリストが作成されます。
         </p>
       
       <h5 class="section-title">カードを作成する</h5>
-        <%= image_tag 'create_card.png', alt: 'カード作成', class: 'description-img' %>
+        <%= image_tag 'create_card.png', alt: 'カード作成', class: 'description-img border border-secondary' %>
         <p>
           リストに表示されている『 + Add Card 』をクリックしカードの作成ページを開きます。<br>
           入力欄に各項目を入力しSaveを押すことでカードが作成されます。<br>
         </p>
       <h5 class="section-title">作成後のイメージ</h5>
-        <%= image_tag 'list.png', alt: 'リスト・カード作成後イメージ', class: 'description-img' %>
+        <%= image_tag 'list.png', alt: 'リスト・カード作成後イメージ', class: 'description-img border border-secondary' %>
         <p>
           それぞれタイトルと期日が表示され、期限切れのタスクにはカードに注意文が表示されます。
         </p>
@@ -43,6 +43,6 @@
         </div>
   </section>
   <div class="text-center">
-    <%= link_to t('top.login'), login_path, class: "btn btn-custom text-center" %>
+    <%= link_to t('top.login'), login_path, class: "btn btn-custom" %>
   </div>
 </div>

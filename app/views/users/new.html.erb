@@ -1,29 +1,31 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10 col-lg-8 mx-auto">
-      <h1><%= t('users.new.title') %></h1>
+      <h1 class="text-center my-5 font-japanese"><%= t('users.new.title') %></h1>
       <%= form_with model: @user do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
-        <div class="mb-3">
+        <div class="mb-3 font-japanese"">
           <%= f.label :user_name, class: "form-label" %>
           <%= f.text_field :user_name, class: "form-control" %>
         </div>
-        <div class="mb-3">
+        <div class="mb-3 font-japanese"">
           <%= f.label :email, class: "form-label" %>
           <%= f.email_field :email, class: "form-control" %>
         </div>
-        <div class="mb-3">
+        <div class="mb-3 font-japanese"">
           <%= f.label :password, class: "form-label" %>
           <%= f.password_field :password, class: "form-control" %>
         </div>
-        <div class="mb-3">
+        <div class="mb-3 font-japanese"">
           <%= f.label :password_confirmation, class: "form-label" %>
           <%= f.password_field :password_confirmation, class: "form-control" %>
         </div>
-        <%= f.submit t('helpers.submit.create'), class: "btn btn-primary" %>
+        <div class="text-center mb-3">
+          <%= f.submit t('helpers.submit.create'), class: "btn-custom" %>
+        </div>
       <% end %>
       <div class='text-center'>
-        <%= link_to t('users.new.to_login_page'), login_path %>
+        <%= link_to t('users.new.to_login_page'), login_path, class: 'text-link' %>
       </div>
     </div>
   </div>

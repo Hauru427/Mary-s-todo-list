@@ -1,21 +1,26 @@
 <div class="container">
   <div class="row">
-    <div class=" col-md-10 col-lg-8 mx-auto">
-      <h1><%= t('user_sessions.new.title') %></h1>
+    <div class="col-md-10 col-lg-8 mx-auto">
+      <h1 class="text-center my-5 font-japanese"><%= t('user_sessions.new.title') %></h1>
+      <div class="d-flex justify-content-center my-2">
+        <%= link_to image_tag('btn_login_base.png', alt: t('top.login_with_line')), auth_at_provider_path(provider: :line), class: "line-login" %>
+      </div>
       <%= form_with url: login_path do |f| %>
-        <div class="mb-3">
+        <div class="my-3 font-japanese">
           <%= f.label :email %>
           <%= f.email_field :email, class: "form-control" %>
         </div>
-        <div class="mb-3">
+        <div class="my-3 font-japanese">
           <%= f.label :password %>
           <%= f.password_field :password, class: "form-control" %>
         </div>
-        <%= f.submit t('user_sessions.new.login'), class: "btn btn-primary" %>
+        <div class="text-center my-3">
+          <%= f.submit t('user_sessions.new.login'), class: "btn-custom" %>
+        </div>
       <% end %>
-      <div class='text-center'>
-        <%= link_to t('user_sessions.new.to_register_page'), new_user_path %>
-        <%= link_to t('user_sessions.new.password_forget'), new_password_reset_path %>
+      <div class='d-flex justify-content-between'>
+        <%= link_to t('user_sessions.new.to_register_page'), new_user_path, class: 'text-link' %>
+        <%= link_to t('user_sessions.new.password_forget'), new_password_reset_path, class: 'text-link' %>
       </div>
     </div>
   </div>
