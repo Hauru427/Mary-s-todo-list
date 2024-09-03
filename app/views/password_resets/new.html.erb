@@ -1,6 +1,16 @@
-<h3><%= t('password_reset.request.title') %></h3>
-<%= form_with url: password_resets_path do |f| %>
-    <%= f.label :email %>
-    <%= f.email_field :email %>
-    <%= f.submit t('password_reset.request.button') %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 col-lg-8 mx-auto">
+      <h3 class="text-center my-5 font-japanese"><%= t('password_reset.request.title') %></h3>
+      <%= form_with url: password_resets_path, class: 'form-group' do |f| %>
+        <div class="mb-3 font-japanese">
+          <%= f.label :email, class: 'form-label' %>
+          <%= f.email_field :email, class: 'form-control', placeholder: 'メールアドレスを入力' %>
+        </div>
+        <div class="text-center">
+          <%= f.submit t('password_reset.request.button'), class: 'btn-custom' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
