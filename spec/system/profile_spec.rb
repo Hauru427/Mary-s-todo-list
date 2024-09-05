@@ -1,5 +1,3 @@
-# spec/system/profile_edit_spec.rb
-
 require 'rails_helper'
 
 RSpec.describe "Profile", type: :system do
