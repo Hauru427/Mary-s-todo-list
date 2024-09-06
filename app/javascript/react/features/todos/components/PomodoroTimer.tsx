@@ -41,7 +41,7 @@ const PomodoroTimer: React.FC<PomodoroTimerProps> = ({ cardId }) => {
     }, []);
 
     useEffect(() => {
-        let timer: number;
+        let timer: any;
         if (isRunning) {
             timer = setInterval(() => {
                 setTime(prevTime => prevTime > 0 ? prevTime - 1 : 0);
