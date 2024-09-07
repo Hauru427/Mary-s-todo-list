@@ -22,16 +22,10 @@ jobs:
           POSTGRES_DB: app_development
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: password
-
-      selenium:
-        image: selenium/standalone-chrome:latest
-        ports:
-          - "4445:4444"
     
     env:
       RAILS_ENV: test
       DATABASE_URL: "postgres://postgres:password@localhost:5432/app_development"
-      CHROME_DRIVER_URL: http://selenium:4445/wd/hub
 
     steps:
       - name: Checkout code
@@ -44,6 +38,9 @@ jobs:
 
       - name: Set up database schema
         run: bin/rails db:schema:load
+      
+      - name: Chrome Install
+        run: sudo apt-get install google-chrome-stable
 
       - name: Run tests
         run: bundle exec rspec
