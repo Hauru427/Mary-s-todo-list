@@ -36,8 +36,6 @@ end
 Capybara.register_driver :remote_chrome do |app|
   options = Selenium::WebDriver::Chrome::Options.new
   options.add_argument('headless') if ENV['HEADLESS']
-  options.add_argument('--disable-gpu') # 古いバージョンのChrome用
-  options.add_argument('--no-sandbox') # CI環境での実行に必須
 
   Capybara::Selenium::Driver.new(app,
     browser: :remote,
