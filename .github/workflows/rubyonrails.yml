@@ -48,7 +48,10 @@ jobs:
       - name: Run tests
         env:
           CHROME_DRIVER_URL: "http://localhost:4444/wd/hub"
-        run: bundle exec rspec
+        run: |
+          export SELENIUM_REMOTE_URL="http://localhost:4444/wd/hub"
+          export CAPYBARA_APP_HOST="http://127.0.0.1:3001"
+          bundle exec rspec
 
   lint:
     runs-on: ubuntu-latest
