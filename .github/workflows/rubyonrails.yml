@@ -25,11 +25,6 @@ jobs:
           image: selenium/standalone-chrom:latest
           ports:
             - "4444:4444"
-           options: >-
-          --health-cmd="curl -sSL http://localhost:4444/wd/hub/status | jq -r .value.ready -eq true"
-          --health-interval=5s
-          --health-timeout=5s
-          --health-retries=5
     env:
       RAILS_ENV: test
       DATABASE_URL: "postgres://postgres:password@localhost:5432/app_development"
