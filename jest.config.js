@@ -1,4 +1,5 @@
 module.exports = {
+  modulePathIgnorePatterns: ["<rootDir>/vendor/"],
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
   reporters: ["default", ["jest-junit", { outputDirectory: "tmp", outputName: "result.xml", classNameTemplate: "{filepath}" }]],
@@ -8,4 +9,5 @@ module.exports = {
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/app/javascript/$1',
   },
+  setupFilesAfterEnv: ['<rootDir>/app/javascript/setupTests.js'],
 };
