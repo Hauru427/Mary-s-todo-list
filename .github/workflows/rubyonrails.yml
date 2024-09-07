@@ -39,8 +39,14 @@ jobs:
       - name: Set up database schema
         run: bin/rails db:schema:load
       
-      - name: Chrome Install
-        run: sudo apt-get install google-chrome-stable
+      - name: Install Chrome
+        run: sudo apt-get install -y google-chrome-stable
+
+      - name: Install ChromeDriver
+        run: sudo apt-get install -y chromedriver
+
+      - name: Set up ChromeDriver path
+        run: echo 'export PATH=$PATH:/usr/lib/chromium-browser/' >> $GITHUB_ENV
 
       - name: Run tests
         run: bundle exec rspec
