@@ -7,20 +7,18 @@
 name: "Ruby on Rails CI"
 on:
   push:
-    branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
 jobs:
   test:
     runs-on: ubuntu-latest
     services:
       postgres:
-        image: postgres:11-alpine
+        image: postgres:latest
         ports:
           - "5432:5432"
         env:
           POSTGRES_DB: rails_test
-          POSTGRES_USER: rails
+          POSTGRES_USER: postgres
           POSTGRES_PASSWORD: password
     env:
       RAILS_ENV: test
@@ -38,7 +36,7 @@ jobs:
         run: bin/rails db:schema:load
       # Add or replace test runners here
       - name: Run tests
-        run: bin/rake
+        run: bundle exec rspec
 
   lint:
     runs-on: ubuntu-latest

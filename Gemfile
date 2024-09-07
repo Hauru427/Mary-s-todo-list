@@ -79,6 +79,11 @@ group :development, :test do
   # rspecのために追加
   gem 'rspec-rails'
   gem 'factory_bot_rails'
+
+  gem 'brakeman'
+  gem 'bundler-audit'
+  gem 'rubocop-rails'
+  gem 'rubocop'
 end
 
 group :development do
