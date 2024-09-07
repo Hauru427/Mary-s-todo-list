@@ -23,9 +23,17 @@ jobs:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: password
 
+        selenium:
+          image: selenium/standalonde-chrome
+          ports:
+            - "4444:4444"
+          options: >-
+            --shm-size 2g
+
     env:
       RAILS_ENV: test
       DATABASE_URL: "postgres://postgres:password@localhost:5432/app_development"
+      CHROME_DRIVER_URL: "http://localhost:4444/wd/hub"
 
     steps:
       - name: Checkout code
