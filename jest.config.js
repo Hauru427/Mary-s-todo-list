@@ -1,4 +1,5 @@
 module.exports = {
+  modulePathIgnorePatterns: ["<rootDir>/vendor/"],
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
   reporters: ["default", ["jest-junit", { outputDirectory: "tmp", outputName: "result.xml", classNameTemplate: "{filepath}" }]],
