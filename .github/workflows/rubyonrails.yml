@@ -42,12 +42,24 @@ jobs:
       - name: Install Chrome
         run: sudo apt-get install -y google-chrome-stable
 
+      - name: Get Chrome version
+        id: chrome_version
+        run: |
+          CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
+          echo "CHROME_VERSION=${CHROME_VERSION}" >> $GITHUB_ENV
+
       - name: Install ChromeDriver
-        run: sudo apt-get install -y chromedriver
+        run: |
+          CHROME_VERSION=${{ env.CHROME_VERSION }}
+          DRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION%.*})
+          wget -N https://chromedriver.storage.googleapis.com/${DRIVER_VERSION}/chromedriver_linux64.zip
+          unzip chromedriver_linux64.zip -d /usr/local/bin/
+          rm chromedriver_linux64.zip
+        env:
+          CHROME_VERSION: ${{ steps.chrome_version.outputs.chrome_version }}
 
-      - name: Set up ChromeDriver path
-        run: echo 'export PATH=$PATH:/usr/lib/chromium-browser/' >> $GITHUB_ENV
-
+      - name: Set ChromeDriver permissions
+        run: sudo chmod +x /usr/local/bin/chromedriver
       - name: Run tests
         run: bundle exec rspec
 
