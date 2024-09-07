@@ -37,7 +37,7 @@ jobs:
           bundler-cache: true
 
       - name: Install JavaScript dependencies
-        run: npm install
+        run: yarn install
 
       - name: Precompile assets
         run: bin/rails assets:precompile
@@ -50,13 +50,16 @@ jobs:
       - name: Set up database schema
         run: bin/rails db:schema:load
 
-      - name: Run tests
+      - name: Run Ruby tests
         env:
           CHROME_DRIVER_URL: "http://localhost:4444/wd/hub"
         run: |
           export SELENIUM_REMOTE_URL="http://localhost:4444/wd/hub"
           export CAPYBARA_APP_HOST="http://127.0.0.1:3001"
           bundle exec rspec
+        
+      -name: Run JavaScript tests
+        run: yarn jest
 
   lint:
     runs-on: ubuntu-latest
