@@ -8,4 +8,5 @@ module.exports = {
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/app/javascript/$1',
   },
+  setupFilesAfterEnv: ['<rootDir>/app/javascript/setupTests.js'],
 };

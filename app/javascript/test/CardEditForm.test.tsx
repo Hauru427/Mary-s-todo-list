@@ -4,6 +4,8 @@ import '@testing-library/jest-dom';
 import CardEditForm from "../react/features/todos/components/CardEditForm";
 import { Card } from "../react/features/todos/types";
 
+jest.mock('../react/features/todos/components/PomodoroTimer', () => () => null);
+
 describe('CardEditForm', () => {
   it('Editフォームが正しく表示されるか', () => {
     const mockCard: Card = {

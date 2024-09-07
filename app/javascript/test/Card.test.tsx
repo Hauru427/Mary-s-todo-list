@@ -5,6 +5,10 @@ import CardCard from '../react/features/todos/components/CardCard';
 import { DraggableProvided } from 'react-beautiful-dnd';
 import { Card } from '../react/features/todos/types';
 import useModal from '../react/features/todos/hooks/useModal';
+import fetchMock from 'jest-fetch-mock';
+import { stringify } from 'querystring';
+
+jest.mock('../react/features/todos/components/PomodoroTimer', () => () => null);
 
 // Mocking the useModal hook
 jest.mock('../react/features/todos/hooks/useModal', () => ({
@@ -46,7 +50,12 @@ describe('CardCard', () => {
     innerRef: jest.fn(),
   };
 
+  beforeEach(() => {
+    fetchMock.resetMocks();
+  });
+
   test('CardCard コンポーネントが正しくレンダリングされる', () => {
+    fetchMock.mockResponse(JSON.stringify({ count: 0}));
     render(
       <CardCard
         card={mockCard}
@@ -63,6 +72,7 @@ describe('CardCard', () => {
   });
 
   test('期限切れのカードが正しく表示される', () => {
+    fetchMock.mockResponse(JSON.stringify({ count: 0 }));
     const expiredCard: Card = {
       ...mockCard,
       due_date: '2022-01-01T00:00:00Z', // 過去の期限
@@ -98,7 +108,7 @@ describe('CardCard', () => {
 
     // モーダルが開く関数が呼ばれたか
     await waitFor(() => {
-      expect(screen.getByText('ポモドーロタイマー')).toBeInTheDocument();
+      expect(screen.getByText('Edit')).toBeInTheDocument();
     });
   });
 });
