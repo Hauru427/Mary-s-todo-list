@@ -1,15 +1,40 @@
-<header class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+<header class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <%= link_to "QuoteTodo", root_path, id: "logo", class: "navbar-brand font-english" %>
+    <%= link_to "Home", root_path, id: "logo", class: "navbar-brand" %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <%= link_to t('header.login'), login_path, class: "nav-link font-japanese" %>
+        <!-- デスクトップサイズ向けのドロップダウンメニュー -->
+        <li class="nav-item dropdown d-none d-lg-block">
+          <a class="nav-link" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-user fa-lg me-2"></i>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+            <li>
+              <%= link_to t('header.login'), login_path, class: "dropdown-item" %>
+            </li>
+            <li>
+              <%= link_to t('header.terms_of_service'), terms_of_service_path, class: "dropdown-item" %>
+            </li>
+            <li>
+              <%= link_to t('header.privacy_policy'), privacy_policy_path, class: "dropdown-item" %>
+            </li>
+          </ul>
+        </li>
+        <!-- モバイルサイズ向けの通常リンク（ハンバーガーメニュー内） -->
+        <li class="nav-item d-lg-none">
+          <%= link_to t('header.login'), login_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item d-lg-none">
+          <%= link_to t('header.terms_of_service'), terms_of_service_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item d-lg-none">
+          <%= link_to t('header.privacy_policy'), privacy_policy_path, class: "nav-link" %>
         </li>
       </ul>
     </div>
   </div>
 </header>
+

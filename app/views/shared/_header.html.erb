@@ -1,18 +1,37 @@
 <header class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <%= link_to "QuoteTodo", root_path, id: "logo", class: "navbar-brand font-english" %>
+    <button class="navbar-toggler d-lg-none common-menu-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item dropdown">
-          <%= link_to '#', id: 'navbarDropdownMenuLink', role: 'button', data: { bs_toggle: 'dropdown' }, aria: { expanded: 'false' } do %>
+        <!-- 大きい画面ではアバター画像を表示 -->
+        <li class="nav-item dropdown d-none d-lg-block">
+          <%= link_to '#', class: 'common-menu-toggle', id: 'navbarDropdownMenuLink', role: 'button', data: { bs_toggle: 'dropdown' }, aria: { expanded: 'false' } do %>
             <%= image_tag(current_user.avatar.url || 'images/sample.jpg', alt: 'Avatar', class: 'rounded-circle mr15', width: '40', height: '40') %>
           <% end %>
-          <ul class="dropdown-menu doropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
             <li><%= link_to t('header.profile'), profile_path, data: { turbo: true }, class: "dropdown-item" %></li>
             <li><%= link_to t('header.terms_of_service'), terms_of_service_path, data: { turbo: true }, class: "dropdown-item" %></li>
             <li><%= link_to t('header.privacy_policy'), privacy_policy_path, data: { turbo: true }, class: "dropdown-item" %></li>
-            <li><%= link_to t('header.logout'), logout_path, data: { turbo: true, turbo_method: :delete} , class: "dropdown-item" %></li>
+            <li><%= link_to t('header.logout'), logout_path, data: { turbo: true, turbo_method: :delete }, class: "dropdown-item" %></li>
           </ul>
         </li>
+        <!-- モバイルサイズ向けの通常リンク（ハンバーガーメニュー内） -->
+        <li class="nav-item d-lg-none">
+          <%= link_to t('header.profile'), profile_path, data: { turbo: true }, class: "nav-link" %>
+        </li>
+        <li class="nav-item d-lg-none">
+          <%= link_to t('header.terms_of_service'), terms_of_service_path, data: { turbo: true }, class: "nav-link" %>
+        </li>
+        <li class="nav-item d-lg-none">
+          <%= link_to t('header.privacy_policy'), privacy_policy_path, data: { turbo: true }, class: "nav-link" %>
+        </li>
+        <li class="nav-item d-lg-none">
+          <%= link_to t('header.logout'), logout_path, data: { turbo: true, turbo_method: :delete }, class: "nav-link" %>
+        </li>
       </ul>
+    </div>
   </div>
 </header>
