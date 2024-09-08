@@ -32,7 +32,7 @@ RSpec.describe 'ログイン・ログアウト', type: :system do
         login_as(user)
       end
       it 'ログアウトできること' do
-        find('#navbarDropdownMenuLink').click
+        find('#navbarDropdownMenuLink', visible: true).click
         find('a', text: 'ログアウト', match: :first, visible: true).click
         sleep 1
         expect(current_path).to eq root_path
