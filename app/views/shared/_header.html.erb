@@ -15,6 +15,7 @@
             <li><%= link_to t('header.profile'), profile_path, data: { turbo: true }, class: "dropdown-item" %></li>
             <li><%= link_to t('header.terms_of_service'), terms_of_service_path, data: { turbo: true }, class: "dropdown-item" %></li>
             <li><%= link_to t('header.privacy_policy'), privacy_policy_path, data: { turbo: true }, class: "dropdown-item" %></li>
+            <li><%= link_to t('contact.title'), new_contact_path, data: { turbo: true }, class: "dropdown-item" %></li>
             <li><%= link_to t('header.logout'), logout_path, data: { turbo: true, turbo_method: :delete }, class: "dropdown-item" %></li>
           </ul>
         </li>
@@ -27,6 +28,9 @@
         </li>
         <li class="nav-item d-lg-none">
           <%= link_to t('header.privacy_policy'), privacy_policy_path, data: { turbo: true }, class: "nav-link" %>
+        </li>
+        <li class="nav-item d-lg-none">
+          <%= link_to t('contact.title'), new_contact_path, data: { turbo: true }, class: "nav-link" %>
         </li>
         <li class="nav-item d-lg-none">
           <%= link_to t('header.logout'), logout_path, data: { turbo: true, turbo_method: :delete }, class: "nav-link" %>

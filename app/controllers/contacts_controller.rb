@@ -8,8 +8,7 @@ class ContactsController < ApplicationController
   def confirm
     @contact = Contact.new(contact_params)
     if @contact.invalid?
-      flash[:alert] = @contact.errors.full_messages.join(", ")
-      @contact = Contact.new
+      flash.now[:danger] = t('contact.create.failure')
       render :new
     end
   end
@@ -25,8 +24,7 @@ class ContactsController < ApplicationController
       ContactMailer.send_email(@contact).deliver_now
       redirect_to done_contacts_path
     else
-      flash[:alert] = @contact.errors.full_messages.join(", ")
-      @contact = Contact.new
+      flash.now[:danger] = t('contact.create.failure')
       render :new
     end
   end

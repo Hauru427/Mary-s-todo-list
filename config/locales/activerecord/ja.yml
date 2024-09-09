@@ -9,3 +9,8 @@ ja:
         avatar: アバター
         password: パスワード
         password_confirmation: パスワード確認
+      contact:
+       name: お名前
+       email: メールアドレス
+       subject: 件名
+       message: "メッセージ"
