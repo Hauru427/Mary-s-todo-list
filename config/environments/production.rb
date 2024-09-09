@@ -92,7 +92,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # パスワードリセットの設定（Gmail）
-  config.action_mailer.default_url_options = { host: 'https://merystodo-80a52780b2d3.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'https://quotelist-4597d721fe3e.herokuapp.com' }
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
