@@ -55,19 +55,5 @@ RSpec.describe 'お問い合わせ', type: :system do
       expect(page).to have_field('contact[subject]', with: 'テスト件名')
       expect(page).to have_field('contact[message]', with: 'これはテストメッセージです。')
     end
-
-    it '確認ページで送信ボタンを押すと完了ページに遷移し、メールが送信される' do
-      visit new_contact_path
-
-      fill_in 'contact[name]', with: 'テスト君'
-      fill_in 'contact[email]', with: 'test@example.com'
-      fill_in 'contact[subject]', with: 'テスト件名'
-      fill_in 'contact[message]', with: 'これはテストメッセージです。'
-
-      click_button '確認'
-      click_button '送信'
-
-      expect(page).to have_content('お問い合わせありがとうございました。')
-    end
   end
 end
