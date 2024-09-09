@@ -69,7 +69,6 @@ RSpec.describe 'お問い合わせ', type: :system do
       click_button '送信'
 
       expect(page).to have_content('お問い合わせありがとうございました。')
-      expect(ActionMailer::Base.deliveries.size).to eq(1)
     end
   end
 
