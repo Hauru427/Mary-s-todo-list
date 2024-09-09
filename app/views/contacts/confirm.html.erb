@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 col-lg-8 mx-auto">
+    <h1 class="text-center my-5 font-japanese"><%= t('contact.confirm') %></h1>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td class="text-right" style="witdh: 30%;"><%= t('contact.name') %></td>
+            <td><%= @contact.name %></td>
+          </tr>
+          <tr>
+            <td class="text-right mt-3" style="witdh: 30%;"><%= t('contact.email') %></td>
+            <td><%= @contact.email %></td>
+          </tr>
+          <tr>
+            <td class="text-right mt-3" style="witdh: 30%;"><%= t('contact.subject') %></td>
+            <td><%= @contact.subject %></td>
+          </tr>
+          <tr>
+            <td class="text-right mt-3" style="witdh: 30%;"><%= t('contact.message') %></td>
+            <td style="white-space: pre-wrap;"><%= @contact.message %></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="flex">
+        <div class="mr-3">
+          <%= form_with model: @contact do |f| %>
+            <%= f.hidden_field :name %>
+            <%= f.hidden_field :email %>
+            <%= f.hidden_field :subject %>
+            <%= f.hidden_field :message %>
+            <div class="text-center">
+              <%= f.submit t('contact.send'), class: "brn-custom" %>
+            </div>
+          <% end %>
+        </div>
+
+        <div>
+          <%= form_with model: @contact, url: back_contacts_path do |f| %>
+            <%= f.hidden_field :name %>
+            <%= f.hidden_field :email %>
+            <%= f.hidden_field :subject %>
+            <%= f.hidden_field :message %>
+            <div class="text-center">
+              <%= f.submit t('contact.back'), class: "btn-custom" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

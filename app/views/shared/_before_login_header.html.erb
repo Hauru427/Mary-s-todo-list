@@ -21,6 +21,9 @@
             <li>
               <%= link_to t('header.privacy_policy'), privacy_policy_path, class: "dropdown-item" %>
             </li>
+            <li>
+              <%= link_to t('contact.title'), new_contact_path, class: "dropdown-item" %>
+            </li>
           </ul>
         </li>
         <!-- モバイルサイズ向けの通常リンク（ハンバーガーメニュー内） -->
@@ -32,6 +35,9 @@
         </li>
         <li class="nav-item d-lg-none">
           <%= link_to t('header.privacy_policy'), privacy_policy_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item d-lg-none">
+          <%= link_to t('contact.title'), new_contact_path, class: "nav-link" %>
         </li>
       </ul>
     </div>

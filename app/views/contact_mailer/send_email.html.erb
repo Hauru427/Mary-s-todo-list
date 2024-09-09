@@ -1,0 +1,6 @@
+<%= @contact.name %> 様 から問い合わせがありました。<br>
+
+<%= t('contact.email') %>：<%= @contact.email %><br>
+<%= t('contact.subject') %>：<%= @contact.subject %><br>
+<%= t('contact.content') %><br>
+<span style="white-space: pre-wrap;"><%= @contact.message %></span>

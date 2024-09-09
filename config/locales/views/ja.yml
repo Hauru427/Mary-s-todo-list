@@ -64,3 +64,15 @@ ja:
       button: リセット
     sending: パスワードリセットのメールを送信しました
     reset: パスワードがリセットされました
+  contact:
+    subject: 件名
+    email: メールアドレス
+    name: お名前
+    message: メッセージ
+    confirm: 入力内容確認
+    send: 送信
+    back: 入力画面に戻る
+    content: 内容
+    title: お問い合わせ
+    create:
+      failure: お問い合わせの作成に失敗しました

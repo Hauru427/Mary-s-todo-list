@@ -47,4 +47,13 @@ Rails.application.routes.draw do
   #プライバシーポリシーと利用規約
   get 'privacy_policy', to: 'static_pages#privacy_policy'
   get 'terms_of_service', to: 'static_pages#terms_of_service'
+
+  # お問い合わせページ
+  resources :contacts, only: [:new, :create] do
+    collection do
+      post 'confirm'
+      post 'back'
+      get 'done'
+    end
+  end
 end
