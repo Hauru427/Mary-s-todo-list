@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'お問い合わせ', type: :system do
-
   describe "問い合わせフォームのテスト" do
     it "フォームページにアクセスできる" do
       visit new_contact_path
@@ -71,5 +70,4 @@ RSpec.describe 'お問い合わせ', type: :system do
       expect(page).to have_content('お問い合わせありがとうございました。')
     end
   end
-
 end

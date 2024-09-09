@@ -7,10 +7,10 @@ class ContactsController < ApplicationController
 
   def confirm
     @contact = Contact.new(contact_params)
-    if @contact.invalid?
-      flash.now[:danger] = t('contact.create.failure')
-      render :new
-    end
+    return unless @contact.invalid?
+
+    flash.now[:danger] = t('contact.create.failure')
+    render :new
   end
 
   def back
@@ -32,6 +32,7 @@ class ContactsController < ApplicationController
   def done; end
 
   private
+
   def contact_params
     params.require(:contact).permit(:name, :email, :subject, :message)
   end

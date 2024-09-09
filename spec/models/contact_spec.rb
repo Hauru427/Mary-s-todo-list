@@ -5,5 +5,4 @@ RSpec.describe Contact, type: :model do
     contact = Contact.new(name: '', email: 'test@example.com', subject: 'テスト', message: 'テスト')
     expect(contact).not_to be_valid
   end
-
 end
