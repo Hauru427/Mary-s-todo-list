@@ -28,6 +28,8 @@ ja:
     create:
       success: ログインしました
       failure: ログインに失敗しました
+      provider_success: からログインしました。
+      provider_failure: からのログインに失敗しました。
     destroy:
       success: ログアウトしました
   users:
