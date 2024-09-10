@@ -6,9 +6,9 @@ class RemindersController < ApplicationController
 
   def send_reminders
     current_time = Time.now
-    send_daily_reminders if current_time.hour == 5
+    send_daily_reminders if current_time.hour == 0
     send_hourly_reminders
-    send_merry_reminders if current_time.hour == 9
+    send_motivational_reminders if current_time.hour == 21
   end
 
   def send_daily_reminders
@@ -47,7 +47,7 @@ class RemindersController < ApplicationController
     quote_data = fetch_random_quote('overdue')
     message = {
       type: 'text',
-      text: "以下のタスクが期限切れです:\n#{task_messages}\n\n#{quote_data['content']}\n- #{quote_data['author']}"
+      text: "以下のタスクが期限切れです:\n#{task_messages}\n\n#{quote_data['content']}\n~ #{quote_data['author']}~"
     }
 
     response = client.push_message(user.line_id, message)
@@ -62,7 +62,7 @@ class RemindersController < ApplicationController
     quote_data = fetch_random_quote(category)
     message = {
       type: 'text',
-      text: "#{card.title}の期限が#{timing}に近づいています。\n今回の名言\n#{quote_data['content']}\n- #{quote_data['author']}"
+      text: "#{card.title}の期限が#{timing}に近づいています。\n\n今回の名言\n#{quote_data['content']}\n~ #{quote_data['author']}~"
     }
 
     response = client.push_message(user.line_id, message)
