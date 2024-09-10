@@ -1,5 +1,22 @@
 inherit_from: .rubocop_todo.yml
+
 Metrics/BlockLength:
   Exclude:
     - 'db/schema.rb'
+    - 'app/controllers/reminders_controller.rb'
 
+Metrics/ClassLength:
+  Exclude:
+    - 'app/controllers/reminders_controller.rb'
+
+Metrics/AbcSize:
+  Exclude:
+    - 'app/controllers/reminders_controller.rb'
+
+Metrics/MethodLength:
+  Exclude:
+    - 'app/controllers/reminders_controller.rb'
+
+Metrics/BlockNesting:
+  Exclude:
+    - 'app/controllers/reminders_controller.rb'

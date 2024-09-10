@@ -6,9 +6,9 @@ class RemindersController < ApplicationController
 
   def send_reminders
     current_time = Time.now
-    send_daily_reminders if current_time.hour == 5
+    send_daily_reminders if current_time.hour.zero?
     send_hourly_reminders
-    send_merry_reminders if current_time.hour == 9
+    send_motivational_reminders if current_time.hour == 21
   end
 
   def send_daily_reminders
@@ -47,7 +47,7 @@ class RemindersController < ApplicationController
     quote_data = fetch_random_quote('overdue')
     message = {
       type: 'text',
-      text: "以下のタスクが期限切れです:\n#{task_messages}\n\n#{quote_data['content']}\n- #{quote_data['author']}"
+      text: "以下のタスクが期限切れです:\n#{task_messages}\n\n#{quote_data['content']}\n~ #{quote_data['author']}~"
     }
 
     response = client.push_message(user.line_id, message)
@@ -62,7 +62,7 @@ class RemindersController < ApplicationController
     quote_data = fetch_random_quote(category)
     message = {
       type: 'text',
-      text: "#{card.title}の期限が#{timing}に近づいています。\n今回の名言\n#{quote_data['content']}\n- #{quote_data['author']}"
+      text: "#{card.title}の期限が#{timing}に近づいています。\n\n今回の名言\n#{quote_data['content']}\n~ #{quote_data['author']}~"
     }
 
     response = client.push_message(user.line_id, message)
@@ -90,16 +90,41 @@ class RemindersController < ApplicationController
       when Line::Bot::Event::Message
         case event.type
         when Line::Bot::Event::MessageType::Text
-          message = {
-            type: 'text',
-            text: "Received your message: #{event.message['text']}"
-          }
+          user_message = event.message['text']
+
+          if user_message.include?("今日のTodo")
+            tasks = get_today_todos(event)
+            message = {
+              type: 'text',
+              text: tasks.present? ? "本日が期限のタスク:\n#{tasks}" : "本日が期限のタスクはありません"
+            }
+          elsif user_message.include > ("名言")
+            quote = fetch_random_quote(:line)
+            message - {
+              type: 'text',
+              text: "#{quote['content']}\n~ #{quote['author']} ~"
+            }
+          else
+            message = {
+              type: 'text',
+              text: "申し訳ありませんが、このアカウントは配信専用となっております。"
+            }
+          end
+
           client.reply_message(event['replyToken'], message)
         end
       end
     end
 
     head :ok
+  end
+
+  def get_today_todos(event)
+    user = User.find_by(line_id: event['source']['userId'])
+    return unless user
+
+    Card.where(user:, due_date: Time.now.all_day).pluck(:title)
+    tasks.join("\n")
   end
 
   private
