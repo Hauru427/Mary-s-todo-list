@@ -6,7 +6,7 @@ class RemindersController < ApplicationController
 
   def send_reminders
     current_time = Time.now
-    send_daily_reminders if current_time.hour == 0
+    send_daily_reminders if current_time.hour.zero?
     send_hourly_reminders
     send_motivational_reminders if current_time.hour == 21
   end
@@ -98,7 +98,7 @@ class RemindersController < ApplicationController
               type: 'text',
               text: tasks.present? ? "本日が期限のタスク:\n#{tasks}" : "本日が期限のタスクはありません"
             }
-          elsif user_message.include>("名言")
+          elsif user_message.include > ("名言")
             quote = fetch_random_quote(:line)
             message - {
               type: 'text',
@@ -123,8 +123,8 @@ class RemindersController < ApplicationController
     user = User.find_by(line_id: event['source']['userId'])
     return unless user
 
-    tasks = Card.where(user: user, due_date: Time.now.all_day).pluck(:title)
-    tasuks.join("\n")
+    Card.where(user:, due_date: Time.now.all_day).pluck(:title)
+    tasks.join("\n")
   end
 
   private
