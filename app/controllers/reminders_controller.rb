@@ -98,9 +98,9 @@ class RemindersController < ApplicationController
               type: 'text',
               text: tasks.present? ? "本日が期限のタスク:\n#{tasks}" : "本日が期限のタスクはありません"
             }
-          elsif user_message.include > ("名言")
+          elsif user_message.include?("名言")
             quote = fetch_random_quote(:line)
-            message - {
+            message = {
               type: 'text',
               text: "#{quote['content']}\n~ #{quote['author']} ~"
             }
@@ -123,7 +123,7 @@ class RemindersController < ApplicationController
     user = User.find_by(line_id: event['source']['userId'])
     return unless user
 
-    Card.where(user:, due_date: Time.now.all_day).pluck(:title)
+    tasks = Card.where(user:, due_date: Time.now.all_day).pluck(:title)
     tasks.join("\n")
   end
 
