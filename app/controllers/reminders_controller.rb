@@ -90,16 +90,41 @@ class RemindersController < ApplicationController
       when Line::Bot::Event::Message
         case event.type
         when Line::Bot::Event::MessageType::Text
-          message = {
-            type: 'text',
-            text: "Received your message: #{event.message['text']}"
-          }
+          user_message = event.message['text']
+
+          if user_message.include?("今日のTodo")
+            tasks = get_today_todos(event)
+            message = {
+              type: 'text',
+              text: tasks.present? ? "本日が期限のタスク:\n#{tasks}" : "本日が期限のタスクはありません"
+            }
+          elsif user_message.include>("名言")
+            quote = fetch_random_quote(:line)
+            message - {
+              type: 'text',
+              text: "#{quote['content']}\n~ #{quote['author']} ~"
+            }
+          else
+            message = {
+              type: 'text',
+              text: "申し訳ありませんが、このアカウントは配信専用となっております。"
+            }
+          end
+
           client.reply_message(event['replyToken'], message)
         end
       end
     end
 
     head :ok
+  end
+
+  def get_today_todos(event)
+    user = User.find_by(line_id: event['source']['userId'])
+    return unless user
+
+    tasks = Card.where(user: user, due_date: Time.now.all_day).pluck(:title)
+    tasuks.join("\n")
   end
 
   private
