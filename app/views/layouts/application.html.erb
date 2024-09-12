@@ -9,6 +9,14 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
    <%= favicon_link_tag('favicon.png') %>
+
+   <!-- OGP meta tags -->
+    <meta property="og:title" content="Quotetodo">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="<%= request.original_url %>">
+    <meta property="og:image" content="https://i.gyazo.com/0117e1b461e339642848e09b250e9f99.png">
+    <meta property="og:description" content="タスク管理とモチベーションアップを両立するアプリです。">
+    <meta property="og:site_name" content="Quotetodo">
   </head>
 
   <body>
