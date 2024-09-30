@@ -89,7 +89,7 @@
 
 ### フロントエンド
 - 初期リリースではRailsを使用
-- React（Railsで全て作成し本リリース後に徐々に移行）
+- React（タスク関連の機能をRailsから移行）
 - CSSフレームワーク: Bootstrap 5系
 
 ### WebAPI
